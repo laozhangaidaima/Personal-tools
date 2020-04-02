@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>一个测试</title>
+	<link rel="stylesheet" href="./js/element.css">
+	<script src="./js/axios.min.js"></script>
+	<script src="./js/vue.js"></script>
+	<script src="./js/element.js"></script>
+
+	<style>
+		.w200 {
+			width: 200px;
+		}
+
+		.w566 {
+			width: 566px;
+		}
+
+		.w257 {
+			width: 257px;
+		}
+
+		.mt20 {
+			margin-top: 20px;
+		}
+
+		.mr20 {
+			margin-right: 20px;
+		}
+
+		.page {
+			float: right;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+
+		.dialogTitle {
+			margin-left: -50px;
+			line-height: 24px;
+			font-size: 18px;
+			color: #303133;
+		}
+
+		.timeSelect.el-date-editor.el-input,
+		.timeSelect.el-date-editor.el-input__inner {
+			width: 200px;
+		}
+	</style>
+
+
+
+</head>
+
+<body>
+	<div id="app">
+
+		<el-container>
+
+			<el-header>
+
+				<el-row>
+					<el-button type="primary" class="el-icon-plus mr20" v-on:click="AE_openDialog('add',null)">
+						添加
+					</el-button>
+					<el-input placeholder="请输入客户名称" class="w200 mr20" v-model="searchForm.name"></el-input>
+					<el-input placeholder="请输入业务号码" clearable class="w257 mr20" v-model="searchForm.code">
+						<el-button slot="append" icon="el-icon-search"
+							v-on:click="getTable_checkTable_pagination(true)">
+						</el-button>
+					</el-input>
+					<el-button type="primary" class="el-icon-back ">返回报表</el-button>
+				</el-row>
+
+			</el-header>
+
+			<el-main>
+				<el-table :data="tableData" style="width: 100%" border v-loading="tableLoading">
+					<el-table-column prop="CustomerName" label="客户名称" align="center" show-overflow-tooltip>
+					</el-table-column>
+					<el-table-column prop="BusinessNumber" label="业务号码" align="center" show-overflow-tooltip>
+					</el-table-column>
+					<el-table-column prop="BusinessTimeBegin" label="业务开始时间" align="center" show-overflow-tooltip>
+					</el-table-column>
+					<el-table-column prop="BusinessTimeEnd" label="业务结束时间" align="center" show-overflow-tooltip>
+					</el-table-column>
+					<el-table-column label="管理" align="center" width="300">
+						<template slot-scope="scope">
+							<el-button size="mini" type="primary" v-on:click="">分配端口
+							</el-button>
+							<el-button size="mini" type="primary" v-on:click="AE_openDialog('edit',scope.row)">修改
+							</el-button>
+							<el-button size="mini" type="danger" v-on:click="Delete(scope.row)">删除
+							</el-button>
+						</template>
+					</el-table-column>
+				</el-table>
+			</el-main>
+
+			<el-footer>
+				<el-pagination v-on:current-change="nextPage" :current-page="searchForm.currentPage"
+					:page-size="searchForm.pageSize" layout="total, prev, pager, next, jumper" :total="searchForm.total"
+					class="page">
+				</el-pagination>
+			</el-footer>
+		</el-container>
+
+
+		<!-- 添加和修改 弹窗 -->
+		<el-dialog :visible.sync="AE_dialog" width=1000px style="display:none" :close-on-click-modal=false>
+			<!-- title  -->
+			<div slot="title" class="dialogTitle" v-if="AE_isFlage=='add'">
+				            <span>新增</span>
+				        </div>
+			<div slot="title" class="dialogTitle" v-else-if="AE_isFlage=='edit'">
+				            <span>编辑</span>
+				        </div>
+			<!-- main -->
+			<div id="dialog_main">
+				<el-form :model="AE_form" :inline="true" ref="AE_form" label-width="150px"
+					style="position:relative;left:68px;">
+					<el-form-item label="客户名称">
+						<el-input v-model="AE_form.name" class="w200" placeholder="请输入客户名称"></el-input>
+					</el-form-item>
+					<el-form-item label="业务号码">
+						<el-input v-model="AE_form.code" class="w200" placeholder="请输入业务号码"></el-input>
+					</el-form-item>
+					<el-form-item label="业务开始时间" prop="height">
+						<el-date-picker v-model="AE_form.btime" type="date" placeholder="请选择业务开始时间" class="timeSelect"
+							value-format="yyyy-MM-dd">
+						</el-date-picker>
+					</el-form-item>
+					<el-form-item label="业务结束时间">
+						<el-date-picker v-model="AE_form.etime" type="date" placeholder="请选择业务结束时间" class="timeSelect"
+							value-format="yyyy-MM-dd">
+						</el-date-picker>
+					</el-form-item>
+					<el-form-item label="保底流量">
+						<el-input v-model="AE_form.lowflow" class="w200" placeholder="请输入保底流量"></el-input>
+						<span>Mbps</span>
+					</el-form-item>
+					<br>
+					<el-form-item label="描述信息">
+						<el-input type="textarea" :rows="4" placeholder="请输入描述信息" v-model="AE_form.desc" class="w566"
+							clearable>
+					</el-form-item>
+				</el-form>
+			</div>
+			<!-- footer -->
+			<div id="dialog_button" class="mt20">
+				<span slot="footer" class="dialog-footer">
+					<el-button v-on:click="AE_dialog = false">返回</el-button>
+					<el-button type="primary" v-on:click="AE_submit()" v-if="AE_isFlage=='add'">提交</el-button>
+					<el-button type="primary" v-on:click="AE_submit()" v-else-if="AE_isFlage=='edit'">提交</el-button>
+				</span>
+			</div>
+
+		</el-dialog>
+
+
+
+
+
+	</div>
+</body>
+<script>
+	var app = new Vue({
+		el: "#app",
+
+		data: {
+			tableLoading: false,
+			searchForm: { //搜索 表格
+				pageSize: 10,
+				pageIndex: 1,
+				currentPage: 1, //当前页
+				total: null, //数据总数
+			},
+			tableData: [],
+			AE_form: { //新增修改表格
+			},
+			AE_dialog: false, //弹窗
+			AE_isFlage: null,
+
+		},
+
+		methods: {
+			Delete: function (row) { //删除功能
+				let self = this;
+				self.$confirm('此操作将删除设备【' + row.CustomerName + '】, 是否继续?', '提示', {
+						confirmButtonText: '确定',
+						cancelButtonText: '取消',
+						type: 'warning'
+					})
+					.then(function () {
+						// let url = baseUrl + "/report/DeleFlowReportCustomer";
+						let data = {
+							guid: row.GUID,
+						};
+						axios
+							.post(url, Qs.stringify(data))
+							.then(function (response) {
+								self.getTable_checkTable_pagination();
+								self.$message({
+									showClose: true,
+									message: '删除成功',
+									type: 'success'
+								});
+							})
+					}).catch(function () {
+						self.$message({
+							type: 'info',
+							message: '已取消删除'
+						})
+					});
+			},
+			AE_openDialog: function (AE_isFlage, row) { //添加和修改弹窗
+				let self = this;
+				self.AE_isFlage = AE_isFlage;
+				if (AE_isFlage === 'edit') { //修改
+					self.AE_form = {
+						guid: row.GUID, //传0为新增，大于0为更新
+					};
+
+				} else if (AE_isFlage === 'add') { //新增 清空
+					self.AE_form = {
+						guid: null, //传0为新增，大于0为更新
+					};
+
+				}
+				self.AE_dialog = true;
+			},
+			AE_submit: function () { // 新增和修改提交
+				let self = this;
+				if (!self.AE_form.name) { //验证不通过 进行提示
+					self.$message({
+						showClose: true,
+						message: '请输入客户名',
+						type: 'error'
+					});
+					return false;
+				}
+				if (!self.AE_form.code) {
+					self.$message({
+						showClose: true,
+						message: '请输入业务号码',
+						type: 'error'
+					});
+					return false;
+				}
+				if (!self.AE_form.desc) {
+					self.$message({
+						showClose: true,
+						message: '请输入描述',
+						type: 'error'
+					});
+					return false;
+				}
+				if (self.AE_isFlage == 'add') { //添加
+					// let url = baseUrl + "/report/AddUpdaFlowReportCustomer";
+					let data = {
+						guid: "", //传0为新增，大于0为更新
+						name: self.AE_form.name, //客户名
+						code: self.AE_form.code, //业务号码
+						btime: self.AE_form.btime, //开始时间
+						etime: self.AE_form.etime, //结束时间
+						lowflow: self.AE_form.lowflow, //保底流量
+						desc: self.AE_form.desc, //描述
+					};
+					let msg = "新增"; //提示文字
+					self.AE_public(url, data, msg); //调用公共函数
+					return false;
+				}
+				if (self.AE_isFlage == 'edit') {
+					//通过验证 发送请求
+					// let url = baseUrl + "/report/AddUpdaFlowReportCustomer";
+					let data = {
+						guid: self.AE_form.guid, //传0为新增，大于0为更新
+					};
+					let msg = "修改"; //提示文字
+					self.AE_public(url, data, msg); //调用公共函数
+					return false;
+				}
+			},
+			AE_public: function (url, data, msg) { //新增和修改的函数 公用部分
+				let self = this;
+				axios
+					.post(url, Qs.stringify(data))
+					.then(function (response) {
+						self.getTable_checkTable_pagination(); //再次请求表格数据
+						self.AE_dialog = false; //关闭弹窗
+						self.$message({ //新增成功的提示
+							showClose: true,
+							message: '' + msg + '政企客户' + '成功',
+							type: 'success'
+						});
+					})
+					.catch(function (error) {
+						self.$message({ //新增失败的提示
+							showClose: true,
+							message: '' + msg + '政企客户' + '失败',
+							type: 'error'
+						});
+					})
+			},
+			getTable_checkTable_pagination: function (check) { //1.获取表格数据 2.查询
+				let self = this;
+				// let url = baseUrl + "/report/GetFlowReportCustomer";
+				if (check) { //点击查询
+					self.searchForm.pageIndex = 1; //查询输入值时 pageindex赋值为1
+				}
+				let data = {
+					pageIndex: self.searchForm.pageIndex,
+					pageSize: self.searchForm.pageSize,
+
+				};
+				self.tableLoading = true;
+				axios
+					.post(url, Qs.stringify(data))
+					.then(function (response) {
+						self.searchForm.total = response.data.totalRecords;
+						self.tableData = response.data.records;
+						self.tableLoading = false;
+					})
+			},
+			nextPage: function (row) { //后端分页
+				let self = this;
+				self.searchForm.pageIndex = row; //index传值
+				self.getTable_checkTable_pagination();
+			},
+
+
+		},
+
+		//页面加载执行
+		created: function () {
+			let self = this;
+			self.getTable_checkTable_pagination();
+		},
+
+
+	});
+</script>
+
+
+</html>
