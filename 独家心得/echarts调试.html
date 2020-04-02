@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>一个测试</title>
+    <link rel="stylesheet" href="./js/element.css">
+    <script src="./js/axios.min.js"></script>
+    <script src="./js/vue.js"></script>
+    <script src="./js/element.js"></script>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/moment.min.js "></script>
+    <script src="./js/echarts.min.js"></script>
+    <script src="./js/v-charts.min.js"></script>
+
+    <style>
+
+    </style>
+
+
+</head>
+
+
+<body>
+
+    <div id="app">
+        <template>
+            <ve-bar :data="chartData"></ve-bar>
+        </template>
+    </div>
+
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+
+            chartData: {
+                columns: ['日期', '访问用户', '下单用户', '下单率'],
+                rows: [
+
+                ]
+            }
+
+        },
+
+
+
+        methods: {
+            tt: function () {
+                let self = this;
+                self.chartData.rows.push({
+                    '日期': '1/1',
+                    '访问用户': 1393,
+                    '下单用户': 1093,
+                    '下单率': 0.32
+                })
+
+            }
+
+        },
+
+
+
+
+        mounted: function () {
+            let self = this;
+            self.tt()
+
+        },
+
+        created: function () {
+            let self = this;
+
+        },
+    })
+</script>
+
+
+</html>
