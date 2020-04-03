@@ -16,9 +16,30 @@
   <script src="./js/v-charts.min.js"></script>
   <script src="./js/linq.min.js"></script>
   <script src="./js/qs.js"></script>
-  <script src="./js/mock-min.js"></script>
 
-  <script></script>
+  <script>
+    // let url = 'method=query_sql_dataset_data&projectId=85&appToken=7d22e38e-5717-11e7-907b-a6006ad3dba0';
+    // Qs.parse(url);
+    // console.log(Qs.parse(url));
+
+    let obj = {
+      method: "query_sql_dataset_data",
+      projectId: "85",
+      appToken: "7d22e38e-5717-11e7-907b-a6006ad3dba0",
+      datasetId: " 12564701"
+    };
+
+    console.log("3",Qs.stringify(obj));
+    
+
+
+    Qs.stringify(obj);
+    console.log("1",Qs.stringify(obj));
+    JSON.stringify(obj);
+    console.log("2",JSON.stringify(obj));
+
+
+  </script>
 
   <style></style>
 </head>
@@ -38,9 +59,9 @@
     },
     watch: {},
     methods: {},
-    mounted: function () {},
+    mounted: function () { },
 
-    created: function () {}
+    created: function () { }
   });
 </script>
 

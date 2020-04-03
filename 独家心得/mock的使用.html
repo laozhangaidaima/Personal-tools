@@ -17,31 +17,27 @@
   <script src="./js/linq.min.js"></script>
   <script src="./js/qs.js"></script>
   <script src="./js/mock-min.js"></script>
+  <script>let a = Mock.mock({
+      "string|1-10": "★"
+    });
 
-  <script></script>
-
+    console.log("a", a);</script>
   <style></style>
 </head>
 
 <body>
-  <div id="app">
-
-
-  </div>
+  <div id="app"></div>
 </body>
-<script>
-  var vm = new Vue({
+<script>var vm = new Vue({
     el: "#app",
     data: {
-
 
     },
     watch: {},
     methods: {},
-    mounted: function () {},
+    mounted: function () { },
 
-    created: function () {}
-  });
-</script>
+    created: function () { }
+  });</script>
 
 </html>
