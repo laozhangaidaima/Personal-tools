@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>一个测试</title>
+  <link rel="stylesheet" href="./js/element.css" />
+  <script src="./js/axios.min.js"></script>
+  <script src="./js/vue.js"></script>
+  <script src="./js/element.js"></script>
+  <script src="./js/jquery.min.js"></script>
+  <script src="./js/moment.min.js "></script>
+  <script src="./js/echarts.min.js"></script>
+  <script src="./js/v-charts.min.js"></script>
+
+  <script></script>
+
+  <style>
+    table.list tr td,
+    table.list tr th,
+    table.list tr {
+      border: 1px solid #bfd8e0;
+    }
+
+
+    table.list tr td {
+      padding: 5px 0 5px 0;
+
+    }
+
+    table {
+      border-collapse: collapse;
+      /*关键代码*/
+    }
+
+    .w600 {
+      width: 600px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 对这种写法还是有点不熟悉 -->
+    <table cellpadding="0" cellspacing="0" border="0" align="center" width="80%">
+      <tr>
+        <td align="center" valign="middle">
+          <b>
+            <font size="4">
+              <span id="ctl00_main_shijian" style="display:inline-block;height:30px;">20 年 04 月 03
+                日&nbsp;IDC机房巡检表</span>
+            </font>
+          </b>
+        </td>
+      </tr>
+    </table>
+    <table cellpadding="1" cellspacing="1" border="0" align="center" class="list" width="80%">
+      <tr>
+        <td>
+          <span style="color:Red;">*</span>选择节点
+        </td>
+        <td colspan="4">
+          &nbsp;&nbsp;<div id="nodeSelector"></div>
+        </td>
+      </tr>
+      <tr>
+        <td width="19%">
+          <div align="left">
+            门锁管理</div>
+        </td>
+        <td width="32%">
+          <table id="ctl00_main_rd1" border="0">
+            <tr>
+
+
+              <el-radio-group v-model="TreeOrtable" class="switchBtn" size="mini">
+                <el-radio-button label="正常"></el-radio-button>
+                <el-radio-button label="异常"></el-radio-button>
+              </el-radio-group>
+
+
+
+
+            </tr>
+          </table>
+        </td>
+        <td width="2%" rowspan="6">
+          <div align="center">
+            安全监控系统</div>
+        </td>
+        <td width="15%">
+          <div align="center">
+            火警报警</div>
+        </td>
+        <td width="32%">
+          <table id="ctl00_main_rd11" border="0">
+            <tr>
+              <el-radio-group v-model="TreeOrtable" class="switchBtn" size="mini">
+                <el-radio-button label="正常"></el-radio-button>
+                <el-radio-button label="异常"></el-radio-button>
+              </el-radio-group>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div align="left">
+            地板管理</div>
+        </td>
+        <td>
+          <table id="ctl00_main_rd2" border="0">
+            <tr>
+              <el-radio-group v-model="TreeOrtable" class="switchBtn" size="mini">
+                <el-radio-button label="正常"></el-radio-button>
+                <el-radio-button label="异常"></el-radio-button>
+              </el-radio-group>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <div align="center">
+            电子门禁
+          </div>
+        </td>
+        <td>
+          <table id="ctl00_main_rd12" border="0">
+            <tr>
+              <el-radio-group v-model="TreeOrtable" class="switchBtn" size="mini">
+                <el-radio-button label="正常"></el-radio-button>
+                <el-radio-button label="异常"></el-radio-button>
+              </el-radio-group>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div align="left">
+            吊顶</div>
+        </td>
+        <td>
+          <table id="ctl00_main_rd3" border="0">
+            <tr>
+              <el-radio-group v-model="TreeOrtable" class="switchBtn" size="mini">
+                <el-radio-button label="正常"></el-radio-button>
+                <el-radio-button label="异常"></el-radio-button>
+              </el-radio-group>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <div align="center">
+            机房温度
+          </div>
+        </td>
+        <td>
+          <el-input v-model="input3" class="input-with-select" size="mini" style="width: 230px;">
+            <template slot="prepend"><span style="color:Red;">*</span>最大值：</template>
+            <template slot="append"> ℃</template>
+          </el-input>
+
+          <el-input v-model="input3" class="input-with-select" size="mini" style="width: 230px;margin-left: 20px;">
+            <template slot="prepend"><span style="color:Red;">*</span>最小值：</template>
+            <template slot="append"> ℃</template>
+          </el-input>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div align="left">
+            交流使用情况</div>
+        </td>
+        <td>
+          <table id="ctl00_main_rd4" border="0">
+            <tr>
+              <el-radio-group v-model="TreeOrtable" class="switchBtn" size="mini">
+                <el-radio-button label="正常"></el-radio-button>
+                <el-radio-button label="异常"></el-radio-button>
+              </el-radio-group>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <div align="center">
+            机房湿度
+          </div>
+        </td>
+        <td>
+          <el-input v-model="input3" class="input-with-select" size="mini" style="width: 230px;">
+            <template slot="prepend"><span style="color:Red;">*</span>最大值：</template>
+            <template slot="append"> ℃</template>
+          </el-input>
+
+          <el-input v-model="input3" class="input-with-select" size="mini" style="width: 230px;margin-left: 20px;">
+            <template slot="prepend"><span style="color:Red;">*</span>最小值：</template>
+            <template slot="append"> ℃</template>
+          </el-input>
+
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div align="left">
+            直流使用情况</div>
+        </td>
+        <td>
+          <table id="ctl00_main_rd5" border="0">
+            <tr>
+              <el-radio-group v-model="TreeOrtable" class="switchBtn" size="mini">
+                <el-radio-button label="正常"></el-radio-button>
+                <el-radio-button label="异常"></el-radio-button>
+              </el-radio-group>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <div align="center">
+            视频监控</div>
+        </td>
+        <td>
+          <table id="ctl00_main_rd13" border="0">
+            <tr>
+              <el-radio-group v-model="TreeOrtable" class="switchBtn" size="mini">
+                <el-radio-button label="正常"></el-radio-button>
+                <el-radio-button label="异常"></el-radio-button>
+              </el-radio-group>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div align="left">
+            机房照明</div>
+        </td>
+        <td>
+          <table id="ctl00_main_rd6" border="0">
+            <tr>
+              <el-radio-group v-model="TreeOrtable" class="switchBtn" size="mini">
+                <el-radio-button label="正常"></el-radio-button>
+                <el-radio-button label="异常"></el-radio-button>
+              </el-radio-group>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <div align="center">
+            防火器材</div>
+        </td>
+        <td>
+          <table id="ctl00_main_rd14" border="0">
+            <tr>
+              <el-radio-group v-model="TreeOrtable" class="switchBtn" size="mini">
+                <el-radio-button label="正常"></el-radio-button>
+                <el-radio-button label="异常"></el-radio-button>
+              </el-radio-group>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td height="15">
+          <div align="left">
+            过滤网清洁</div>
+        </td>
+        <td>
+          <table id="ctl00_main_rd7" border="0">
+            <tr>
+              <el-radio-group v-model="TreeOrtable" class="switchBtn" size="mini">
+                <el-radio-button label="正常"></el-radio-button>
+                <el-radio-button label="异常"></el-radio-button>
+              </el-radio-group>
+            </tr>
+          </table>
+        </td>
+        <td rowspan="4">
+          <div align="center">
+            设备情况
+          </div>
+        </td>
+        <td colspan="2">
+          <div align="center">
+            主要检查设备物理状态是否正常，是否有过热现象</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div align="left">
+            服务器布线是否整齐</div>
+        </td>
+        <td>
+          <table id="ctl00_main_rd8" border="0">
+            <tr>
+              <el-radio-group v-model="TreeOrtable" class="switchBtn" size="mini">
+                <el-radio-button label="正常"></el-radio-button>
+                <el-radio-button label="异常"></el-radio-button>
+              </el-radio-group>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <div align="center">
+            虚拟服务器</div>
+        </td>
+        <td>
+          <table id="ctl00_main_rd15" border="0">
+            <tr>
+              <el-radio-group v-model="TreeOrtable" class="switchBtn" size="mini">
+                <el-radio-button label="正常"></el-radio-button>
+                <el-radio-button label="异常"></el-radio-button>
+              </el-radio-group>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div align="left">
+            卫生</div>
+        </td>
+        <td>
+          <table id="ctl00_main_rd9" border="0">
+            <tr>
+              <el-radio-group v-model="TreeOrtable" class="switchBtn" size="mini">
+                <el-radio-button label="正常"></el-radio-button>
+                <el-radio-button label="异常"></el-radio-button>
+              </el-radio-group>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <div align="center">
+            交换机</div>
+        </td>
+        <td>
+          <table id="ctl00_main_rd16" border="0">
+            <tr>
+              <el-radio-group v-model="TreeOrtable" class="switchBtn" size="mini">
+                <el-radio-button label="正常"></el-radio-button>
+                <el-radio-button label="异常"></el-radio-button>
+              </el-radio-group>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div align="left">
+            其他</div>
+        </td>
+        <td>
+          <table id="ctl00_main_rd10" border="0">
+            <tr>
+              <el-radio-group v-model="TreeOrtable" class="switchBtn" size="mini">
+                <el-radio-button label="正常"></el-radio-button>
+                <el-radio-button label="异常"></el-radio-button>
+              </el-radio-group>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <div align="center">
+            防火墙</div>
+        </td>
+        <td>
+          <table id="ctl00_main_rd17" border="0">
+            <tr>
+              <el-radio-group v-model="TreeOrtable" class="switchBtn" size="mini">
+                <el-radio-button label="正常"></el-radio-button>
+                <el-radio-button label="异常"></el-radio-button>
+              </el-radio-group>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="5">
+          存在问题：<br />
+
+          <el-input type="textarea" v-model="textareaVaule" style="width: 80%;" :rows="5" clearable></el-input>
+          <!-- <textarea name="ctl00$main$askinfo" rows="5" cols="20" id="ctl00_main_askinfo" style="width:80%;"> -->
+          </textarea>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="5" align="center">
+          <el-button type="primary">确定</el-button>
+        </th>
+      </tr>
+    </table>
+
+
+  </div>
+</body>
+<script>
+  var vm = new Vue({
+    el: "#app",
+    data: {
+      textareaVaule: "",
+      TreeOrtable: "正常",
+    },
+    watch: {},
+    methods: {},
+    mounted: function () {},
+
+    created: function () {}
+  });
+</script>
+
+</html>
