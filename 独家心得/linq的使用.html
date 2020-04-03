@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>一个测试</title>
+  <link rel="stylesheet" href="./js/element.css" />
+  <script src="./js/axios.min.js"></script>
+  <script src="./js/vue.js"></script>
+  <script src="./js/element.js"></script>
+  <script src="./js/jquery.min.js"></script>
+  <script src="./js/moment.min.js "></script>
+  <script src="./js/echarts.min.js"></script>
+  <script src="./js/v-charts.min.js"></script>
+  <script src="./js/linq.min.js"></script>
+
+  <script>
+    //一、 where查询
+    var myList = [
+
+      {
+        Name: "Jim",
+        Age: 20
+      },
+
+      {
+        Name: "Kate",
+        Age: 21
+      },
+
+      {
+        Name: "Lilei",
+        Age: 18
+      },
+
+      {
+        Name: "John",
+        Age: 14
+      },
+
+      {
+        Name: "LinTao",
+        Age: 25
+      }
+
+    ];
+    // var arrRes = Enumerable.from(myList).where("x=>x.Name=='Jim'").toArray();
+    // 二、排序：OrderBy
+    // var arrRes = Enumerable.from(myList).orderBy("x=>x.Age").toArray(); //降序OrderByDescending()
+    // 三、去重：Distinct
+    // var arrRes = Enumerable.from(myList).distinct("x=>x.Age").toArray();
+    // 四、遍历：ForEach
+    // Enumerable.from(myList).forEach(function (value, index) {
+    //   console.log("值=", value);
+    //   console.log("索引=", index);
+    // });
+    // 五、取唯一对象：First、FirstOrDefault、Last、LastOrDefault、Single、SingleOrDefault
+    // var arrRes = Enumerable.from(myList).firstOrDefault("x=>x.Age>18");
+
+
+
+
+
+      console.log("arrRes",arrRes);
+  </script>
+
+  <style></style>
+</head>
+
+<body>
+  <div id="app">
+
+
+  </div>
+</body>
+<script>
+  var vm = new Vue({
+    el: "#app",
+    data: {
+
+
+    },
+    watch: {},
+    methods: {},
+    mounted: function () {
+
+
+
+    },
+
+    created: function () {}
+  });
+</script>
+
+</html>
