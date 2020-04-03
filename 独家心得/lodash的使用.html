@@ -25,7 +25,8 @@
 
 
   <script>
-  
+
+
   </script>
 
   <style></style>
@@ -46,7 +47,17 @@
     },
     watch: {},
     methods: {},
-    mounted: function () { },
+    mounted: function () {
+      var array = [1, 2, 3, 1, 2];
+
+      _.pull(array, 2, 3);
+      console.log(array);
+      // => [1, 1]
+
+
+
+
+    },
 
     created: function () { }
   });
