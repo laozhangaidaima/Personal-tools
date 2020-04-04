@@ -48,23 +48,28 @@
     watch: {},
     methods: {},
     mounted: function () {
+      var users = [
+        { 'user': 'fred', 'age': 48 },
+        { 'user': 'barney', 'age': 36 },
+        { 'user': 'fred', 'age': 40 },
+        { 'user': 'barney', 'age': 34 }
+      ];
 
-      let a = {
-        value: '选项1',
-        label: '黄金糕'
-      };
-      let b = {
-        value: '选项2',
-        label: '双皮奶'
-      };
+      let a = _.sortBy(users, function (o) { return o.age; });
+      console.log("a",a);
+      
+
+      // // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+
+      // _.sortBy(users, ['user', 'age']);
+      // // => objects for [['barney', 34], ['barney', 36], ['fred', 40], ['fred', 48]]
+
+      //  let a =  _.sortBy(users, 'user', function (o) {
+      //     return Math.floor(o.age / 10);
+      //   });
 
 
-    let aa =[];
-    aa.push(a,b)
-
-      console.log("aa", aa);
-
-
+      // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
 
     },
 
