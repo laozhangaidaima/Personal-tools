@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>一个测试</title>
+    <link rel="stylesheet" href="./js/element.css" />
+
+    <style type="text/less"></style>
+
+    <script src="./js/axios.min.js"></script>
+    <script src="./js/vue.js"></script>
+    <script src="./js/element.js"></script>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/moment.min.js "></script>
+    <script src="./js/echarts.min.js"></script>
+    <script src="./js/v-charts.min.js"></script>
+    <!-- 函数库 -->
+    <script src="./js/linq.min.js"></script>
+    <!-- 转json 字符串 -->
+    <script src="./js/qs.js"></script>
+    <!-- 模拟数据 -->
+    <script src="./js/mock-min.js"></script>
+    <!-- 函数库 -->
+    <script src="./js/lodash.min.js"></script>
+    <script>
+      //es6简写
+      // function getNum(params = 10, arr = []) {
+      //   for (let i = 0; i < params; i++) {
+      //     arr.push(i);
+      //   }
+      //   return arr;
+      // }
+
+      // function getTotal(params = 0) {
+      //   for (let index = 0; index < getNum(10).length; index++) {
+      //     params += index;
+      //   }
+      //   return params;
+      // }
+      // getTotal();
+      // console.log("getTotal()", getTotal());
+
+      // function name(params) {
+      //   if (params == 0) return "美女";
+      //   if (params == 1) return "帅哥";
+      // }
+      // let name = (params) => {
+      //   if (params == 0) return "美女";
+      //   if (params == 1) return "帅哥";
+      // };
+
+      // name(1);
+      // console.log("name(1)", name(1));
+
+      // var grocery = {
+      //   id: "bananas",
+      //   name: "Bananas",
+      //   units: 6,
+      //   price: 10,
+      //   currency: "USD",
+      // };
+      // var groceries = {
+      //   [grocery.id]: grocery,
+      // };
+
+      let options = [
+        {
+          value: "选项1",
+          label: "黄金糕",
+        },
+        {
+          value: "选项2",
+          label: "双皮奶",
+        },
+        {
+          value: "选项3",
+          label: "蚵仔煎",
+        },
+        {
+          value: "选项4",
+          label: "龙须面",
+        },
+        {
+          value: "选项5",
+          label: "北京烤鸭",
+        },
+      ];
+      
+    </script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+  </body>
+
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data: {},
+      watch: {},
+      methods: {},
+      mounted: function () {},
+
+      created: function () {},
+    });
+  </script>
+</html>
