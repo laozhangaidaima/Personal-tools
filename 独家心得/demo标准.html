@@ -26,8 +26,26 @@
     <!-- 函数库 -->
     <script src="./js/lodash.min.js"></script>
     <script>
-        let self = this;let self = this;
         let self = this;
+
+        // ==UserScript==
+        // @name        打开链接都是新标签 
+        // @namespace   Violentmonkey Scripts
+        // @match       *://*/*
+        // @grant       none
+        // @version     1.0
+        // @author      -
+        // @description 2020/4/6 下午3:36:36
+        // ==/UserScript==
+        (function () {
+            let arr = document.getElementsByTagName('a')
+            console.log("123", arr)
+            for (var i = 0; i < arr.length; i++) {
+                // 得到的a标签的href
+                arr[i].setAttribute("target", "_blank");
+            }
+            // $("a").attr("target","_blank"); 
+        })()
     </script>
 </head>
 
