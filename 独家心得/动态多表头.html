@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>多表头表格</title>
+    <style>
+        #app .table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            color: #515a6e;
+            border: 1px solid #515a6e;
+        }
+
+        .table thead tr th {
+            height: 40px;
+            white-space: nowrap;
+            overflow: hidden;
+            background-color: #f8f8f9;
+        }
+
+        td,
+        th {
+            text-align: center;
+            border: 1px solid #e8eaec;
+        }
+
+        .table thead tr th,
+        .table tbody tr td {
+            padding: 0 10px;
+        }
+
+        .table tbody tr td {
+            height: 48px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <table class="table">
+            <thead>
+                <tr v-for="items in newArr">
+                    <th v-for="item in items" :rowspan="item.rowspan" :colspan="item.colspan">{{item.title}}</th>
+                </tr>
+            </thead>
+            <tbody v-if="needRowSpan.length>0">
+                <tr v-for="(items,index) in dataList">
+                    <td v-for="item in items.tdList" :rowspan="resetRowSpan(index,item)">{{items[item]}}</td>
+                </tr>
+            </tbody>
+            <tbody v-else>
+                <tr v-for="(items,index) in dataList">
+                    <td v-for="item in colKeyList">{{items[item]}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data() {
+            return {
+                columns: [{
+                        title: '时间',
+                        key: 'type',
+                    },
+                    {
+                        title: '参数',
+                        children: [{
+                                title: '流入',
+                                key: 'size',
+                                align: 'center',
+                            },
+                            {
+                                title: '流出',
+                                key: 'param1',
+                                align: 'center',
+                            },
+
+                        ],
+                    },
+                    {
+                        title: '数据',
+                        align: 'center',
+                        children: [{
+                                title: '流入',
+                                key: 'infor1',
+                                align: 'center',
+                            },
+                            {
+                                title: '流出',
+                                key: 'infor2',
+                                align: 'center',
+                            },
+                        ],
+                    },
+                    {
+                        title: '汇总',
+                        key: 'all',
+                    },
+                    
+
+
+                ], //表头原始参数
+                dataList: [{
+                        type: "图书",
+                        date: "2018-11-26",
+                        amount: 0,
+                        size: 12,
+                        param1: 0,
+                        param2: 0,
+                        param3: 0,
+                        infor1: 0,
+                        infor2: 0,
+                        infor3: 0,
+                        infor4: 0,
+                        all:30,
+                    },
+                    {
+                        type: "图书1",
+                        date: "2018-11-26",
+                        amount: 0,
+                        size: 568,
+                        param1: 0,
+                        param2: 0,
+                        param3: 0,
+                        infor1: 0,
+                        infor2: 0,
+                        infor3: 0,
+                        infor4: 0,
+                    },
+                    {
+                        type: "平均值",
+                        date: "2018-11-27",
+                        amount: 0,
+                        size: 0,
+                        param1: 0,
+                        param2: 0,
+                        param3: 0,
+                        infor1: 0,
+                        infor2: 0,
+                        infor3: 0,
+                        infor4: 0,
+                    },
+                    {
+                        type: "峰值",
+                        date: "2018-11-27",
+                        amount: 0,
+                        size: 0,
+                        param1: 0,
+                        param2: 0,
+                        param3: 0,
+                        infor1: 0,
+                        infor2: 0,
+                        infor3: 0,
+                        infor4: 0,
+                    }
+                ], //tbody具体数据
+
+                newArr: [
+                    []
+                ], //表头
+                maxHeight: 1, //表头总共占的行数
+                colKeyList: [], //所有的key
+
+                needRowSpan: [], //tbody需要跨行的key
+                span: {} //所跨的行数
+            }
+        },
+        methods: {
+            resetRowSpan(row, key) {
+                if (this.span[key] && this.span[key][row]) {
+                    return this.span[key][row];
+                }
+                return 1;
+            },
+            gerMaxCol(items) {
+                let max = 0;
+
+                function each(data) {
+                    if (max < data.length) {
+                        max = data.length;
+                    }
+                    data.forEach((item) => {
+                        if (item.children) {
+                            each(item.children);
+                        }
+                    });
+                }
+                each(items);
+                return max;
+            },
+            getMaxFloor(treeData) {
+                const that = this;
+                let max = 0;
+
+                function each(data, floor) {
+                    data.forEach((e) => {
+                        if (floor > max) {
+                            max = floor;
+                        }
+                        if (e.children && e.children.length > 0) {
+                            each(e.children, floor + 1);
+                        }
+                    });
+                }
+                each(treeData, 1);
+                return max;
+            },
+            columnsHandle(treeData) {
+                const that = this;
+                const maxFloor = this.maxHeight;
+                const keyList = [];
+
+                function each(data, index) {
+                    if (that.newArr[index] === undefined) {
+                        that.newArr[index] = [];
+                    }
+                    data.forEach((e) => {
+                        const obj = {
+                            title: e.title,
+                            key: e.key,
+                            rowspan: maxFloor,
+                            colspan: 1,
+                        };
+                        if (e.children) {
+                            obj.colspan = that.gerMaxCol(e.children);
+                            obj.rowspan = maxFloor - that.getMaxFloor(e.children);
+                        } else {
+                            that.colKeyList.push(e.key);
+                            if (e.hasrowspan) { //  如果存在hasrowspan属性并且值为true，则表明该key列存在跨行
+                                that.needRowSpan.push(e.key);
+                            }
+                        }
+                        that.newArr[index].push(obj);
+                        if (e.children && e.children.length > 0) {
+                            each(e.children, index + 1);
+                        }
+                    });
+                }
+                each(treeData, 0);
+            },
+            dataHandle(dataList, needRowSpan) {
+                needRowSpan.forEach((key) => {
+                    const sum = {};
+                    let i = 0;
+                    let k = 0;
+                    const that = this;
+                    for (let j = 0; j < dataList.length; j += 1) {
+                        i += 1;
+                        let tdList = [];
+                        if (dataList[j].tdList) {
+                            tdList = [...dataList[j].tdList];
+                        } else {
+                            tdList = [...that.colKeyList];
+                        }
+                        if (dataList[j - 1] && (dataList[j][key] === dataList[j - 1][key] || !dataList[
+                                j][key])) {
+                            const index = tdList.indexOf(key);
+                            if (index > -1) {
+                                tdList.splice(index, 1);
+                            }
+                        }
+                        dataList[j].tdList = tdList;
+                        if (dataList[j + 1] && dataList[j + 1][key]) {
+                            if (dataList[j][key] !== dataList[j + 1][key]) {
+                                sum[k] = i;
+                                i = 0;
+                                k = j + 1;
+                            }
+                        } else if (!dataList[j + 1]) {
+                            sum[k] = i;
+                        }
+                    }
+                    this.span[key] = sum;
+                });
+                this.showTable = true;
+            },
+        },
+
+        mounted() {
+            this.maxHeight = this.getMaxFloor(this.columns); //1. 计算出表头一共需要多少行
+            this.columnsHandle(this.columns); //2. 对表头进行处理
+            this.dataHandle(this.dataList, this.needRowSpan); // 3. 对数据进行处理（传入参数： 具体数据，需要跨行列的（key））
+        },
+
+    });
+</script>
+
+
+</html>

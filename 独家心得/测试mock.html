@@ -25,33 +25,7 @@
     <script src="./js/mock-min.js"></script>
     <!-- 函数库 -->
     <script src="./js/lodash.min.js"></script>
-    <script>
-        let options = [{
-                value: "选项1",
-                label: "黄金糕",
-            },
-            {
-                value: "选项2",
-                label: "双皮奶",
-            },
-            {
-                value: "选项3",
-                label: "蚵仔煎",
-            },
-            {
-                value: "选项4",
-                label: "龙须面",
-            },
-            {
-                value: "选项5",
-                label: "北京烤鸭",
-            },
-        ];
-
-        function name(params) {
-            let self = this;
-        }
-    </script>
+   
 </head>
 
 <body>
@@ -65,7 +39,12 @@
         data: {},
         watch: {},
         methods: {},
-        mounted: function () {},
+        mounted:async function () {
+            let res =await axios.post("https://www.fastmock.site/mock/82a194e05cc6f9392c6aeb865ad4a498/shop01/api/user")
+            console.log("res",res);
+            
+
+        },
 
         created: function () {},
     });
