@@ -3,39 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>多表头表格</title>
-    <style>
-        #app .table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12px;
-            color: #515a6e;
-            border: 1px solid #515a6e;
-        }
-
-        .table thead tr th {
-            height: 40px;
-            white-space: nowrap;
-            overflow: hidden;
-            background-color: #f8f8f9;
-        }
-
-        td,
-        th {
-            text-align: center;
-            border: 1px solid #e8eaec;
-        }
-
-        .table thead tr th,
-        .table tbody tr td {
-            padding: 0 10px;
-        }
-
-        .table tbody tr td {
-            height: 48px;
-        }
-    </style>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
-    <script src="./js/axios.min.js"></script>
 </head>
 
 <body>
@@ -46,17 +14,16 @@
                     <th v-for="item in items" :rowspan="item.rowspan" :colspan="item.colspan">{{item.title}}</th>
                 </tr>
             </thead>
-            <!-- 多级表头 执行这个 -->
             <tbody v-if="needRowSpan.length>0">
                 <tr v-for="(items,index) in dataList">
                     <td v-for="item in items.tdList" :rowspan="resetRowSpan(index,item)">{{items[item]}}</td>
                 </tr>
             </tbody>
-            <!-- <tbody>
+            <tbody v-else>
                 <tr v-for="(items,index) in dataList">
                     <td v-for="item in colKeyList">{{items[item]}}</td>
                 </tr>
-            </tbody> -->
+            </tbody>
         </table>
     </div>
 
@@ -67,111 +34,215 @@
         data() {
             return {
                 columns: [{
-                        title: '时间',
+                        title: '种类',
                         key: 'type',
+                        hasrowspan: true
+                    },
+                    {
+                        title: '编制人数',
+                        key: 'amount',
+                    },
+                    {
+                        title: '日期',
+                        key: 'date',
+                        hasrowspan: true
                     },
                     {
                         title: '参数',
                         children: [{
-                                title: '流入',
+                                title: '大小',
                                 key: 'size',
                                 align: 'center',
                             },
                             {
-                                title: '流出',
+                                title: '参数1',
                                 key: 'param1',
                                 align: 'center',
                             },
-
+                            {
+                                title: '参数2',
+                                key: 'param2',
+                                align: 'center',
+                            },
+                            {
+                                title: '参数3',
+                                key: 'param3',
+                                align: 'center',
+                            },
                         ],
                     },
                     {
                         title: '数据',
                         align: 'center',
                         children: [{
-                                title: '流入',
+                                title: '数据1',
                                 key: 'infor1',
                                 align: 'center',
                             },
                             {
-                                title: '流出',
+                                title: '数据2',
                                 key: 'infor2',
+                                align: 'center',
+                            },
+                            {
+                                title: '数据3',
+                                key: 'infor3',
+                                align: 'center',
+                            },
+                            {
+                                title: '数据4',
+                                key: 'infor4',
                                 align: 'center',
                             },
                         ],
                     },
-                    {
-                        title: '汇总',
-                        key: 'all',
-                    },
-
-
-
                 ], //表头原始参数
-                dataList: [{
-                        type: "图书",
-                        date: "2018-11-26",
-                        amount: 0,
-                        size: 12,
-                        param1: 0,
-                        param2: 0,
-                        param3: 0,
-                        infor1: 0,
-                        infor2: 0,
-                        infor3: 0,
-                        infor4: 0,
-                        all: 30,
-                    },
-                    {
-                        type: "图书1",
-                        date: "2018-11-26",
-                        amount: 0,
-                        size: 568,
-                        param1: 0,
-                        param2: 0,
-                        param3: 0,
-                        infor1: 0,
-                        infor2: 0,
-                        infor3: 0,
-                        infor4: 0,
-                    },
-                    {
-                        type: "平均值",
-                        date: "2018-11-27",
-                        amount: 0,
-                        size: 0,
-                        param1: 0,
-                        param2: 0,
-                        param3: 0,
-                        infor1: 0,
-                        infor2: 0,
-                        infor3: 0,
-                        infor4: 0,
-                    },
-                    {
-                        type: "峰值",
-                        date: "2018-11-27",
-                        amount: 0,
-                        size: 0,
-                        param1: 0,
-                        param2: 0,
-                        param3: 0,
-                        infor1: 0,
-                        infor2: 0,
-                        infor3: 0,
-                        infor4: 0,
-                    }
-                ], //tbody具体数据
-
                 newArr: [
                     []
                 ], //表头
                 maxHeight: 1, //表头总共占的行数
                 colKeyList: [], //所有的key
-
+                dataList: [{
+                        type: "图书",
+                        date: "2018-11-26",
+                        amount: 0,
+                        size: 0,
+                        param1: 0,
+                        param2: 0,
+                        param3: 0,
+                        infor1: 0,
+                        infor2: 0,
+                        infor3: 0,
+                        infor4: 0,
+                    },
+                    {
+                        type: "图书",
+                        date: "2018-11-26",
+                        amount: 0,
+                        size: 0,
+                        param1: 0,
+                        param2: 0,
+                        param3: 0,
+                        infor1: 0,
+                        infor2: 0,
+                        infor3: 0,
+                        infor4: 0,
+                    },
+                    {
+                        type: "电子书",
+                        date: "2018-11-26",
+                        amount: 0,
+                        size: 0,
+                        param1: 0,
+                        param2: 0,
+                        param3: 0,
+                        infor1: 0,
+                        infor2: 0,
+                        infor3: 0,
+                        infor4: 0,
+                    },
+                    {
+                        type: "电子书",
+                        date: "2018-11-26",
+                        amount: 0,
+                        size: 0,
+                        param1: 0,
+                        param2: 0,
+                        param3: 0,
+                        infor1: 0,
+                        infor2: 0,
+                        infor3: 0,
+                        infor4: 0,
+                    },
+                    {
+                        type: "化妆品",
+                        date: "2018-11-26",
+                        amount: 0,
+                        size: 0,
+                        param1: 0,
+                        param2: 0,
+                        param3: 0,
+                        infor1: 0,
+                        infor2: 0,
+                        infor3: 0,
+                        infor4: 0,
+                    },
+                    {
+                        type: "化妆品",
+                        date: "2018-11-27",
+                        amount: 0,
+                        size: 0,
+                        param1: 0,
+                        param2: 0,
+                        param3: 0,
+                        infor1: 0,
+                        infor2: 0,
+                        infor3: 0,
+                        infor4: 0,
+                    },
+                    {
+                        type: "化妆品",
+                        date: "2018-11-27",
+                        amount: 0,
+                        size: 0,
+                        param1: 0,
+                        param2: 0,
+                        param3: 0,
+                        infor1: 0,
+                        infor2: 0,
+                        infor3: 0,
+                        infor4: 0,
+                    },
+                    {
+                        type: "水果",
+                        date: "2018-11-27",
+                        amount: 0,
+                        size: 0,
+                        param1: 0,
+                        param2: 0,
+                        param3: 0,
+                        infor1: 0,
+                        infor2: 0,
+                        infor3: 0,
+                        infor4: 0,
+                    },
+                    {
+                        type: "水果",
+                        date: "2018-11-27",
+                        amount: 0,
+                        size: 0,
+                        param1: 0,
+                        param2: 0,
+                        param3: 0,
+                        infor1: 0,
+                        infor2: 0,
+                        infor3: 0,
+                        infor4: 0,
+                    },
+                    {
+                        type: "水果",
+                        date: "2018-11-27",
+                        amount: 0,
+                        size: 0,
+                        param1: 0,
+                        param2: 0,
+                        param3: 0,
+                        infor1: 0,
+                        infor2: 0,
+                        infor3: 0,
+                        infor4: 0,
+                    },
+                ], //tbody具体数据
                 needRowSpan: [], //tbody需要跨行的key
                 span: {} //所跨的行数
             }
+        },
+        mounted() {
+            this.maxHeight = this.getMaxFloor(this.columns); //1. 计算出表头一共需要多少行
+            this.columnsHandle(this.columns); //2. 对表头进行处理
+            this.dataHandle(this.dataList, this.needRowSpan); // 3. 对数据进行处理（传入参数： 具体数据，需要跨行列的（key））
+            console.log("this.dataList", this.dataList);
+            console.log("columns", this.columns);
         },
         methods: {
             resetRowSpan(row, key) {
@@ -280,99 +351,45 @@
                     }
                     this.span[key] = sum;
                 });
+                console.log(this.span);
                 this.showTable = true;
             },
-
-
-            defaultData: function () {
-                this.maxHeight = this.getMaxFloor(this.columns); //1. 计算出表头一共需要多少行
-                this.columnsHandle(this.columns); //2. 对表头进行处理
-                this.dataHandle(this.dataList, this.needRowSpan); // 3. 对数据进行处理（传入参数： 具体数据，需要跨行列的（key））
-            },
-            proData: async function () {
-                let url = "https://www.fastmock.site/mock/82a194e05cc6f9392c6aeb865ad4a498/shop01/api/riF";
-                let res = await axios.post(url);
-
-
-                this.columns = [{
-                    title: '时间',
-                    key: 'type',
-                    hasrowspan: true
-                }];
-                let arr1 = [];
-                let arr2 = [];
-                for (let j = 0; j < res.data.dateli.length; j++) {
-                    for (let k = 0; k < res.data.dateli[j].portlist.length; k++) {
-                        this.columns.push({
-                            title: res.data.dateli[j].portlist[k].portname,
-                            children: [{
-                                    title: '流入',
-                                    key: '流入' + k,
-                                    align: 'center',
-                                },
-                                {
-                                    title: '流出',
-                                    key: '流出' + k,
-                                    align: 'center',
-                                },
-
-                            ],
-                        });
-                        arr1.push('流入' + k);
-                        arr2.push('流出' + k);
-                    }
-                };
-
-
-
-                //流入
-                let a = [];
-                for (let j = 0; j < res.data.dateli.length; j++) {
-                    for (let k = 0; k < res.data.dateli[j].portlist.length; k++) {
-                        a.push({
-                            [arr1[k]]: res.data.dateli[j].portlist[k].text
-                        })
-                    }
-                };
-                //流出
-                let b = [];
-                for (let j = 0; j < res.data.dateli.length; j++) {
-                    for (let k = 0; k < res.data.dateli[j].portlist.length; k++) {
-                        b.push({
-                            [arr2[k]]: res.data.dateli[j].portlist[k].text1
-                        })
-                    }
-                };
-                //流入流出合并
-                let avg1 = {};
-                for (let k = 0; k < a.length; k++) {
-                    avg1 = Object.assign(a[0], a[k]);
-                }
-                let avg2 = {};
-                for (let k = 0; k < b.length; k++) {
-                    avg2 = Object.assign(b[0], b[k]);
-                }
-                let avg3 = Object.assign(avg1, avg2)
-                console.log("avg3", avg3);
-                //
-                avg3.type = "2018-11-26";
-
-                this.dataList = [];
-                this.dataList.push(avg3)
-
-            },
-
-        },
-
-        mounted: async function () {
-            await this.proData();
-            await this.defaultData();
-
-
-        },
-
+        }
     });
 </script>
+<style>
+    #app .table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12px;
+        color: #515a6e;
+        border: 1px solid #515a6e;
+    }
 
+    .table thead tr th {
+        height: 40px;
+        white-space: nowrap;
+        overflow: hidden;
+        background-color: #f8f8f9;
+    }
+
+    td,
+    th {
+        text-align: center;
+        border: 1px solid #e8eaec;
+    }
+
+    /*tr:hover{*/
+    /*background:#EBF7FF;*/
+    /*}*/
+    .table thead tr th,
+    .table tbody tr td {
+        padding: 0 10px;
+    }
+
+    .table tbody tr td {
+        height: 48px;
+    }
+</style>
 
 </html>
