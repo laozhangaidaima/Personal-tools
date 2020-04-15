@@ -10,6 +10,8 @@
             font-size: 12px;
             color: #515a6e;
             border: 1px solid #515a6e;
+            margin-top: 20px;
+
         }
 
         .table thead tr th {
@@ -40,7 +42,7 @@
 
 <body>
     <div id="app">
-        <table class="table">
+        <table class="table" width="100%" border="0" cellpadding="0" cellspacing="0">
             <thead>
                 <tr v-for="items in newArr">
                     <th v-for="item in items" :rowspan="item.rowspan" :colspan="item.colspan">{{item.title}}</th>
@@ -51,12 +53,18 @@
                 <tr v-for="(items,index) in dataList">
                     <td v-for="item in items.tdList" :rowspan="resetRowSpan(index,item)">{{items[item]}}</td>
                 </tr>
-            </tbody>
-            <!-- <tbody>
-                <tr v-for="(items,index) in dataList">
-                    <td v-for="item in colKeyList">{{items[item]}}</td>
+                <tr>
+                    <td>月平均</td>
+                    <!-- <td></td> -->
+                    <td v-for="dd in data1">{{dd}}</td>
                 </tr>
-            </tbody> -->
+                <tr>
+                    <td>月峰值</td>
+                    <!-- <td></td> -->
+                    <td v-for="dd in data2">{{dd}}</td>
+                </tr>
+
+            </tbody>
         </table>
     </div>
 
@@ -66,6 +74,8 @@
         el: '#app',
         data() {
             return {
+                data1: [],
+                data2: [],
                 columns: [{
                         title: '时间',
                         key: 'type',
@@ -104,7 +114,6 @@
                         title: '汇总',
                         key: 'all',
                     },
-
 
 
                 ], //表头原始参数
@@ -290,77 +299,79 @@
                 this.dataHandle(this.dataList, this.needRowSpan); // 3. 对数据进行处理（传入参数： 具体数据，需要跨行列的（key））
             },
             proData: async function () {
-                let url = "https://www.fastmock.site/mock/82a194e05cc6f9392c6aeb865ad4a498/shop01/api/riF";
+                let url =
+                    "https://www.fastmock.site/mock/82a194e05cc6f9392c6aeb865ad4a498/shop01/api/ri222";
                 let res = await axios.post(url);
+                //  表格数据
+                this.dataList = [];
+                this.columns = [];
 
-
+                // 表头数据
                 this.columns = [{
                     title: '时间',
-                    key: 'type',
+                    key: 'time',
                     hasrowspan: true
                 }];
-                let arr1 = [];
-                let arr2 = [];
                 for (let j = 0; j < res.data.dateli.length; j++) {
                     for (let k = 0; k < res.data.dateli[j].portlist.length; k++) {
                         this.columns.push({
                             title: res.data.dateli[j].portlist[k].portname,
                             children: [{
                                     title: '流入',
-                                    key: '流入' + k,
+                                    key: res.data.dateli[j].portlist[k].portname + 'in',
                                     align: 'center',
                                 },
                                 {
                                     title: '流出',
-                                    key: '流出' + k,
+                                    key: res.data.dateli[j].portlist[k].portname + 'out',
                                     align: 'center',
                                 },
 
                             ],
                         });
-                        arr1.push('流入' + k);
-                        arr2.push('流出' + k);
                     }
                 };
-
-
-
-                //流入
-                let a = [];
-                for (let j = 0; j < res.data.dateli.length; j++) {
-                    for (let k = 0; k < res.data.dateli[j].portlist.length; k++) {
-                        a.push({
-                            [arr1[k]]: res.data.dateli[j].portlist[k].text
-                        })
+                this.columns.push({ //表头数据 汇总
+                    title: '汇总',
+                    key: '汇总',
+                    hasrowspan: true
+                });
+                //表格数据
+                let data = this.procEcharts(res.data.dateli);
+                //汇总
+                let allData = 0;
+                for (let j = 0; j < this.columns.length - 2; j++) {
+                    for (let k in data[j]) {
+                        if (k != 'time') {
+                            allData += data[j][k]
+                            data[j].汇总 = allData.toFixed(2)
+                        }
                     }
+                    allData = 0;
                 };
-                //流出
-                let b = [];
-                for (let j = 0; j < res.data.dateli.length; j++) {
-                    for (let k = 0; k < res.data.dateli[j].portlist.length; k++) {
-                        b.push({
-                            [arr2[k]]: res.data.dateli[j].portlist[k].text1
-                        })
-                    }
-                };
-                //流入流出合并
-                let avg1 = {};
-                for (let k = 0; k < a.length; k++) {
-                    avg1 = Object.assign(a[0], a[k]);
+                this.dataList = data;
+                //月平均
+                //月峰值
+                for (let j = 0; j < res.data.agvmaxli.length; j++) {
+                    this.data1.push(res.data.agvmaxli[j].avg);
+                    this.data2.push(res.data.agvmaxli[j].max)
                 }
-                let avg2 = {};
-                for (let k = 0; k < b.length; k++) {
-                    avg2 = Object.assign(b[0], b[k]);
-                }
-                let avg3 = Object.assign(avg1, avg2)
-                console.log("avg3", avg3);
-                //
-                avg3.type = "2018-11-26";
-
-                this.dataList = [];
-                this.dataList.push(avg3)
 
             },
+
+
+            procEcharts: function (data) {
+                let self = this;
+                for (let i = 0; i < data.length; i++) {
+                    data[i].str = eval("(" + data[i].str + ")");
+                };
+                let obj = [];
+                for (let j = 0; j < data.length; j++) {
+                    obj.push(data[j].str)
+                }
+                return obj
+            },
+
 
         },
 
