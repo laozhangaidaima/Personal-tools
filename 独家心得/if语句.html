@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>一个测试</title>
+    <link rel="stylesheet" href="./js/element.css" />
+    <script src="./js/axios.min.js"></script>
+    <script src="./js/vue.js"></script>
+    <script src="./js/element.js"></script>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/moment.min.js "></script>
+    <script src="./js/echarts.min.js"></script>
+    <script src="./js/v-charts.min.js"></script>
+    <script src="./js/linq.min.js"></script>
+
+    <script>
+
+
+    </script>
+
+    <style></style>
+</head>
+
+<body>
+    <div id="app">
+        <el-tree :data="data" :props="defaultProps" v-on:node-click="handleNodeClick" :expand-on-click-node=false></el-tree>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            data: [{
+                label: '一级 1',
+                children: [{
+                    label: '二级 1-1',
+                    children: [{
+                        label: '三级 1-1-1'
+                    }]
+                }]
+            }, {
+                label: '一级 2',
+                children: [{
+                    label: '二级 2-1',
+                    children: [{
+                        label: '三级 2-1-1'
+                    }]
+                }, {
+                    label: '二级 2-2',
+                    children: [{
+                        label: '三级 2-2-1'
+                    }]
+                }]
+            }, {
+                label: '一级 3',
+                children: [{
+                    label: '二级 3-1',
+                    children: [{
+                        label: '三级 3-1-1'
+                    }]
+                }, {
+                    label: '二级 3-2',
+                    children: [{
+                        label: '三级 3-2-1'
+                    }]
+                }]
+            }],
+            defaultProps: {
+                children: 'children',
+                label: 'label'
+            }
+        },
+        watch: {},
+        methods: {
+            handleNodeClick(data) {
+                console.log(data);
+            }
+
+
+
+
+        },
+        mounted: function () {
+
+        },
+
+        created: function () {}
+    });
+</script>
+
+</html>
