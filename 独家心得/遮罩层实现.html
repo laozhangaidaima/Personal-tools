@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>一个测试</title>
+    <link rel="stylesheet" href="./js/element.css" />
+
+    <style type="text/less">
+        .overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0,0,0,.8);
+            }
+        .lightbox { /*需要引起用户注意的元素*/
+        position: absolute;
+        z-index: 1;
+        background-color: orangered;
+        }
+    </style>
+
+    <script src="./js/axios.min.js"></script>
+    <script src="./js/vue.js"></script>
+    <script src="./js/element.js"></script>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/moment.min.js "></script>
+    <script src="./js/echarts.min.js"></script>
+    <script src="./js/v-charts.min.js"></script>
+    <!-- 函数库 -->
+    <script src="./js/linq.min.js"></script>
+    <!-- 转json 字符串 -->
+    <script src="./js/qs.js"></script>
+    <!-- 模拟数据 -->
+    <script src="./js/mock-min.js"></script>
+    <!-- 函数库 -->
+    <script src="./js/lodash.min.js"></script>
+    <script></script>
+</head>
+
+<body>
+
+
+
+
+
+    <div id="app">
+        <div class="overlay">
+            <div class="lightbox">我是帅哥</div>
+        </div>
+    </div>
+</body>
+<script src="./js/less.min.js"></script>
+
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            dialogVisible: false,
+        },
+        watch: {},
+        methods: {},
+        mounted: function () {},
+
+        created: function () {},
+    });
+</script>
+
+</html>

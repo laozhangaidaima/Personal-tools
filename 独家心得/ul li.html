@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>一个测试</title>
+    <link rel="stylesheet" href="./js/element.css" />
+    <script src="./js/axios.min.js"></script>
+    <script src="./js/vue.js"></script>
+    <script src="./js/element.js"></script>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/moment.min.js "></script>
+    <script src="./js/echarts.min.js"></script>
+    <script src="./js/v-charts.min.js"></script>
+    <script src="./js/linq.min.js"></script>
+
+    <script>
+
+    </script>
+
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <el-table :data="tableData" style="width: 100%">
+            <el-table-column prop="date" label="日期" width="150">
+            </el-table-column>
+            <template>
+                <el-table-column label="地址"  v-for="(item, index) in colunmName" :key="index" :label="item">
+                    <el-table-column prop="province" label="流入" width="120">
+                    </el-table-column>
+                    <el-table-column prop="city" label="流出" width="120">
+                    </el-table-column>
+                </el-table-column>
+            </template>
+
+
+
+
+
+        </el-table>
+    </div>
+
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            tableData: [{
+                date: '2016-05-03',
+                name: '王小虎',
+                province: '上海',
+                city: '普陀区',
+                address: '上海市普陀区金沙江路 1518 弄',
+                zip: 200333
+            }, {
+                date: '2016-05-02',
+                name: '王小虎',
+                province: '上海',
+                city: '普陀区',
+                address: '上海市普陀区金沙江路 1518 弄',
+                zip: 200333
+            }, {
+                date: '2016-05-04',
+                name: '王小虎',
+                province: '上海',
+                city: '普陀区',
+                address: '上海市普陀区金沙江路 1518 弄',
+                zip: 200333
+            }, {
+                date: '2016-05-01',
+                name: '王小虎',
+                province: '上海',
+                city: '普陀区',
+                address: '上海市普陀区金沙江路 1518 弄',
+                zip: 200333
+            }, {
+                date: '2016-05-08',
+                name: '王小虎',
+                province: '上海',
+                city: '普陀区',
+                address: '上海市普陀区金沙江路 1518 弄',
+                zip: 200333
+            }, {
+                date: '2016-05-06',
+                name: '王小虎',
+                province: '上海',
+                city: '普陀区',
+                address: '上海市普陀区金沙江路 1518 弄',
+                zip: 200333
+            }, {
+                date: '2016-05-07',
+                name: '王小虎',
+                province: '上海',
+                city: '普陀区',
+                address: '上海市普陀区金沙江路 1518 弄',
+                zip: 200333
+            }],
+
+            colunmName: ['澳中线-悉尼-仓库', '澳中线-悉尼-仓库1'],
+            totalNumber: 100,
+            data: [{
+                list: [{
+                        name: '澳中线-悉尼-仓库1',
+                        value: 1
+                    },
+                    {
+                        name: '澳中线-悉尼-仓库1',
+                        value: 1
+                    }
+                ],
+                userName: 'admin'
+            }, {
+                list: [{
+                        name: '澳中线-悉尼-仓库1',
+                        value: 1
+                    },
+                    {
+                        name: '澳中线-悉尼-仓库1',
+                        value: 1
+                    }
+                ],
+                userName: 'jason'
+            }]
+        },
+        watch: {},
+        methods: {
+
+
+        },
+        mounted: async function () {
+
+
+
+        },
+
+        created: function () {}
+    });
+</script>
+
+</html>
