@@ -1,5 +1,6 @@
-let a = 0;
-for (let index = 0; index < 10; index++) {
-  a += index;
+let a = 66;
+function name(params) {
+    console.log("aaaa");
+    
+    
 }
-console.log("a", a);

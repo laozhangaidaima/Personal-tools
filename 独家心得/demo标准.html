@@ -8,7 +8,9 @@
     <title>一个测试</title>
     <link rel="stylesheet" href="./js/element.css" />
 
-    <style type="text/less"></style>
+    <style>
+
+    </style>
 
     <script src="./js/axios.min.js"></script>
     <script src="./js/vue.js"></script>
@@ -25,37 +27,18 @@
     <script src="./js/mock-min.js"></script>
     <!-- 函数库 -->
     <script src="./js/lodash.min.js"></script>
-    <script>
-        let options = [{
-                value: "选项1",
-                label: "黄金糕",
-            },
-            {
-                value: "选项2",
-                label: "双皮奶",
-            },
-            {
-                value: "选项3",
-                label: "蚵仔煎",
-            },
-            {
-                value: "选项4",
-                label: "龙须面",
-            },
-            {
-                value: "选项5",
-                label: "北京烤鸭",
-            },
-        ];
 
-        function name(params) {
-            let self = this;
-        }
+    <script src="./debug.js"></script>
+    <script>
+
+
     </script>
 </head>
 
 <body>
-    <div id="app"></div>
+    <div id="app">
+
+    </div>
 </body>
 <script src="./js/less.min.js"></script>
 
@@ -65,7 +48,10 @@
         data: {},
         watch: {},
         methods: {},
-        mounted: function () {},
+        mounted: function () {
+            name();
+            // console.log("a", a);
+        },
 
         created: function () {},
     });
