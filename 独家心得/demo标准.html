@@ -30,7 +30,6 @@
 <body>
     <div id="app">
 
-
     </div>
 </body>
 <script>
@@ -44,11 +43,10 @@
 
 
 
-
-
         },
         mounted: function () {
-
+            axios.get(
+                'http://127.0.0.1:9999/api/1')
         },
 
         created: function () {}

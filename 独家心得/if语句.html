@@ -26,13 +26,17 @@
 
 <body>
     <div id="app">
-        <el-tree :data="data" :props="defaultProps" v-on:node-click="handleNodeClick" :expand-on-click-node=false></el-tree>
+        <el-tree :data="data" :props="defaultProps" v-on:node-click="handleNodeClick" :expand-on-click-node=false>
+        </el-tree>
+
+        <el-input v-model="input" placeholder="请输入内容"></el-input>
     </div>
 </body>
 <script>
     var vm = new Vue({
         el: "#app",
         data: {
+            input: '',
             data: [{
                 label: '一级 1',
                 children: [{
