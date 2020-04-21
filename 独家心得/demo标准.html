@@ -23,19 +23,12 @@
     </script>
 
     <style>
-        .parent {
-            height: 150px;
-            line-height: 150px;
-            /*与height等值*/
-        }
+
     </style>
 </head>
 
 <body>
     <div id="app">
-        <div class="parent">
-            123
-        </div>
 
     </div>
 </body>
@@ -50,11 +43,10 @@
 
 
 
-
-
         },
         mounted: function () {
-
+            axios.get(
+                'http://127.0.0.1:9999/api/1')
         },
 
         created: function () {}
