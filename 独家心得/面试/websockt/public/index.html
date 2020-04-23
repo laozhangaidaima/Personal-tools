@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <input type="text" id="name">
+    <button id="setname">设置</button>
+    <input type="text" id="text">
+    <button type="button" id="btn">发送</button>
+    <div id="container"></div>
+
+
+    <script>
+        var ws = null
+        document.getElementById('setname').onclick = function () {
+            var name = document.getElementById('name').value
+            if (name == '') return console.log("请输入名字");
+            var ws = new WebSocket('ws://localhost:2333')
+
+
+            ws.onopen = function () { //发送信息
+                ws.send(JSON.stringify({
+                    name: name,
+                    type: 'setname'
+                }))
+            }
+
+            document.getElementById('btn').onclick = function () {
+                ws.send(JSON.stringify({
+                    text: document.getElementById('text').value,
+                    type: 'chat'
+                }))
+            }
+
+            ws.onmessage = function (re) { //接收信息
+                var p = document.createElement('p')
+                p.innerHTML = re.data
+                document.getElementById('container').appendChild(p)
+
+            }
+
+        }
+    </script>
+</body>
+
+</html>
