@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>一个测试</title>
+    <link rel="stylesheet" href="../js/element.css" />
+
+
+    <script src="../js/axios.min.js"></script>
+    <script src="../js/vue.js"></script>
+    <script src="../js/element.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/moment.min.js "></script>
+    <script src="../js/echarts.min.js"></script>
+    <script src="../js/v-charts.min.js"></script>
+    <script src="../js/linq.min.js"></script>
+
+    <script>
+        var ws = new WebSocket("wss://echo.websocket.org");
+
+        ws.onopen = function (evt) {
+            console.log("我要执行了");
+            ws.send("我是发送的信息");
+        };
+
+        ws.onmessage = function (evt) {
+            console.log("收到的信息: " + evt.data);
+            ws.close();
+        };
+
+        ws.onclose = function (evt) {
+            console.log("关闭了");
+        };
+    </script>
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+
+        },
+        watch: {},
+        methods: {
+
+
+
+        },
+        mounted: function () {
+
+        },
+
+        created: function () {}
+    });
+</script>
+
+</html>
