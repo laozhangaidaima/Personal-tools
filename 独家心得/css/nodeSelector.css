@@ -1,0 +1,50 @@
+.treeButton {
+    width: 200px;
+}
+
+.el-input.el-input--suffix {
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.el-input.el-input--suffix.rotate .el-input__suffix .el-icon-arrow-up {
+    transform: rotate(180deg);
+}
+
+.treeInput {
+    width: 200px !important;
+    display: block !important;
+    margin: auto;
+}
+
+.tree-popover {
+    margin-right: 20px;
+    display: block;
+}
+
+.my-select {
+    width: 200px;
+}
+
+.my-tree {
+    overflow: auto;
+    overflow-y: auto;
+    overflow-x: auto;
+    height: 350px;
+    width: 200px;
+    margin-top: 10px;
+}
+
+.my-tree::-webkit-scrollbar-thumb {
+    background-color: #999;
+    border-radius: 10px;
+}
+
+.my-tree::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.my-tree::-webkit-scrollbar-track {
+    background-color: transparent;
+}
