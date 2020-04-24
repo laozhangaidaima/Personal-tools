@@ -19,7 +19,15 @@
     <script src="./js/linq.min.js"></script>
 
     <script>
-
+        var html = '<div> ' +
+            ' <el-cascader ' +
+            ' v-model="value" ' +
+            ' :options="options" ' +
+            ' clearable > ' +
+            ' </el-cascader><el-cascader v-model="value1" :options="options" clearable >' +
+            ' </el-cascader>' +
+            ' </div>';
+        console.log("html", html);
     </script>
 
     <style>
@@ -29,7 +37,20 @@
 
 <body>
     <div id="app">
-
+        <div>
+            <el-row>
+                <el-button>新增</el-button>
+                <el-button>删除</el-button>
+            </el-row>
+            <el-table :data="tableData" style="width: 100%">
+                <el-table-column prop="date" label="日期" width="180">
+                </el-table-column>
+                <el-table-column prop="name" label="姓名" width="180">
+                </el-table-column>
+                <el-table-column prop="address" label="地址">
+                </el-table-column>
+            </el-table>
+        </div>
     </div>
 </body>
 <script>
