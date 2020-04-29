@@ -1,5 +1,11 @@
-function multiply(x, y) {
-  return x * y;
+
+
+var a = 1;
+var b = 1;
+function test(){
+  console.log("123");
+  return "123321"
+
 }
 
-export { multiply };
+export {a,b,test}

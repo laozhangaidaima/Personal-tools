@@ -98,6 +98,8 @@ Vue.component("NodeSelector", {
       }
     }
   },
+
+
   template:
     "<div " +
     'class="NodeSelector" ' +

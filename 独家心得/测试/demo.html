@@ -18,115 +18,35 @@
     <script src="../js/v-charts.min.js"></script>
     <script src="../js/linq.min.js"></script>
 
-    <script>
+    <style>
 
+
+    </style>
+
+    <script>
     </script>
 
-    <style>
-        /* *{
-            background-color: red;
-        } */
-    </style>
 </head>
 
 <body>
-    <div id="app">
-        <div class="test" style="height: 100px;width: 100px;">123</div>
+    <div id="app-7">
+        <todo-item v-bind:todo="msg"></todo-item>
     </div>
-
-    <script>
-        let res = {
-            data: {},
-        }
-        res.data = {
-            "code": 100,
-            "msg": "执行成功",
-            "content": {
-                "datas": [{
-                        "BusinessType": 0,
-                        "BusinessTypeStr": "空闲",
-                        "Count": 1
-                    },
-                    {
-                        "BusinessType": 2,
-                        "BusinessTypeStr": "实占",
-                        "Count": 2
-                    },
-                    {
-                        "BusinessType": 0,
-                        "BusinessTypeStr": "空闲12",
-                        "Count": 3
-                    },
-                    {
-                        "BusinessType": 2,
-                        "BusinessTypeStr": "实占32",
-                        "Count": 4
-                    },
-                    {
-                        "BusinessType": 0,
-                        "BusinessTypeStr": "空闲44",
-                        "Count": 5
-                    },
-                    {
-                        "BusinessType": 2,
-                        "BusinessTypeStr": "实占512",
-                        "Count": 6
-                    }
-                ]
-            }
-        }
-
-
-        let ydata = []
-        for (let i = 0; i < res.data.content.datas.length; i++) {
-            ydata.push({
-                name: res.data.content.datas[i].BusinessTypeStr,
-                value: res.data.content.datas[i].Count
-            })
-        }
-
-        ydata = Enumerable.from(ydata).orderByDescending("x=>x.value").toArray()
-// TODO
-
-
-        let other = []
-        let allValue = 0;
-        let allOther = {};
-        if (ydata.length > 4) {
-            other = ydata.splice(4, ydata.length)
-            for (let i = 0; i < other.length; i++) {
-                allValue += other[i].value
-            }
-            allOther={
-                name:'其它',
-                value:allValue,
-            }
-            ydata.push(allOther)
-        }
-
-        console.log("ydata", ydata);
-        // console.log("allOther", allOther);
-    </script>
-
 </body>
 <script>
-    var vm = new Vue({
-        el: "#app",
+    Vue.component('todo-item', {
+        props: {
+            todo: String,
+        },
+        template: '<div>{{ todo }}</div>'
+    })
+
+    var app7 = new Vue({
+        el: '#app-7',
         data: {
-            value: '2'
-        },
-        watch: {},
-        methods: {
-
-
-
-        },
-        mounted: function () {
-
-        },
-
-        created: function () {}
-    });
+            msg: "123321"
+        }
+    })
 </script>
 
 </html>

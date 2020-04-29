@@ -6,86 +6,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>一个测试</title>
-    <script src="../js/vue.js"></script>
     <link rel="stylesheet" href="../js/element.css" />
-    <script src="../js/element.js"></script>
 
-    <!-- <script src="../js/axios.min.js"></script> -->
-    <!-- <script src="../js/moment.min.js "></script> -->
-    <!-- <link rel="stylesheet" href="../css/nodeSelector.css"> -->
-    <!-- <script src="../js/NodeSelector.js "></script> -->
+
+    <script src="../js/axios.min.js"></script>
+    <script src="../js/vue.js"></script>
+    <script src="../js/element.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/moment.min.js "></script>
+    <script src="../js/echarts.min.js"></script>
+    <script src="../js/v-charts.min.js"></script>
+    <script src="../js/linq.min.js"></script>
+
     <style>
 
-    </style>
-    <script>
-        Vue.component('button-counter', {
-            data: function () {
-                return {
-                    tableData: [{
-                        date: '2016-05-02',
-                        name: '王小虎',
-                        address: '上海市普陀区金沙江路 1518 弄'
-                    }, {
-                        date: '2016-05-04',
-                        name: '王小虎',
-                        address: '上海市普陀区金沙江路 1517 弄'
-                    }, {
-                        date: '2016-05-01',
-                        name: '王小虎',
-                        address: '上海市普陀区金沙江路 1519 弄'
-                    }, {
-                        date: '2016-05-03',
-                        name: '王小虎',
-                        address: '上海市普陀区金沙江路 1516 弄'
-                    }]
-                }
-            },
-            // template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
-            template: `
-            <div>
-            <el-row>
-                <el-button type="primary">新增</el-button>
-                <el-button type="primary">删除</el-button>
-            </el-row>
-            <el-table :data="tableData" style="width: 100%">
-                <el-table-column prop="date" label="日期" width="180">
-                </el-table-column>
-                <el-table-column prop="name" label="姓名" width="180">
-                </el-table-column>
-                <el-table-column prop="address" label="地址">
-                </el-table-column>
-            </el-table>
-        </div>
-                        `
 
-        })
+    </style>
+
+    <script>
     </script>
 
 </head>
 
 <body>
     <div id="app">
-        <button-counter></button-counter>
+        <input-test :value="msg"></input-test>
+        <input-test :value="msg"></input-test>
+        <input-test :value="msg"></input-test>
+
     </div>
 </body>
 <script>
+    Vue.component("input-test", {
+        props: {
+            value: {
+                type: String,
+                default: function () {
+                    return "";
+                }
+            },
+        },
+        template: `
+        <div>
+        <input type="text" v-model="msg">
+        <button v-on:click="submit">提交</button>
+        </div>
+
+        `,
+        data: function () {
+            return {
+                msg: "nihaoa"
+            }
+        },
+        methods: {
+            submit: function () {
+
+                console.log("this.value", this.value)
+            }
+        },
+        mounted() {
+
+        },
+
+
+    })
+
+
     var vm = new Vue({
         el: "#app",
         data: {
-
+            msg: "123"
         },
-        watch: {},
-        methods: {
-
-
-
-        },
-        mounted: function () {
-
-        },
-
-        created: function () {}
-    });
+    })
 </script>
 
 </html>
