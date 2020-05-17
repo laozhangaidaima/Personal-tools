@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>电力数据</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, 
+    initial-scale=1, maximum-scale=1, user-scalable=0" />
+
+    <script src="../js/echarts.min.js"></script>
+    <script src="../js/china(1).js"></script>
+</head>
+<style>
+    .tp .hd {
+        font-size: 20px;
+        line-height: 29px;
+        text-align: center;
+    }
+
+    .emp {
+        color: #FFF826;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+        padding-top: 50px;
+    }
+
+    html,
+    body {
+        margin: 0px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #B2E0FF;
+        text-align: center;
+        height: 100%;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    #main {
+        margin: auto;
+
+    }
+</style>
+
+<body>
+
+    <div id="main" style="width:700px;
+  height: 600px;"></div>
+
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('main'));
+
+
+        // 数据说明
+        // data1 : value: 2012容量 d: 2012 容量/小时 2016 容量/小时
+        // data2 : value: 2016容量 d: 2012 容量/小时 2016 容量/小时
+        var data1 = [
+            { name: '北京', value: 614, d: [614, 4627, 971, 4320] },
+            { name: '天津', value: 1110, d: [1110, 5331, 1378, 4314] },
+            { name: '河北', value: 4014, d: [4014, 5621, 4510, 4974] },
+            { name: '山西', value: 5014, d: [5014, 5043, 6329, 3800] },
+            { name: '内蒙古', value: 6039, d: [6039, 5074, 7609, 4532] },
+            { name: '辽宁', value: 3059, d: [3059, 4558, 3114, 4331] },
+            { name: '吉林', value: 1627, d: [1627, 3854, 1777, 3286] },
+            { name: '黑龙江', value: 1753, d: [1753, 4436, 2104, 3922] },
+            { name: '上海', value: 2118, d: [2118, 4574, 2264, 3610] },
+            { name: '江苏', value: 7005, d: [7005, 5734, 8727, 5093] },
+            { name: '浙江', value: 4750, d: [4750, 5268, 6062, 3921] },
+            { name: '安徽', value: 3217, d: [3217, 5571, 4915, 4487] },
+            { name: '福建', value: 2631, d: [2631, 4341, 2902, 3161] },
+            { name: '江西', value: 1506, d: [1506, 4521, 1918, 4560] },
+            { name: '山东', value: 6825, d: [6825, 4962, 9540, 5187] },
+            { name: '河南', value: 5353, d: [5353, 4847, 6431, 3855] },
+            { name: '湖北', value: 2132, d: [2132, 4364, 2694, 3985] },
+            { name: '湖南', value: 1905, d: [1905, 4776, 2322, 3270] },
+            { name: '广东', value: 5752, d: [5752, 4977, 7742, 3698] },
+            { name: '广西', value: 1490, d: [1490, 4698, 2185, 3008] },
+            { name: '海南', value: 389, d: [389, 5325, 464, 4241] },
+            { name: '重庆', value: 724, d: [724, 4671, 1343, 3259] },
+            { name: '四川', value: 1491, d: [1491, 4048, 1642, 2121] },
+            { name: '贵州', value: 2183, d: [2183, 5073, 3014, 3980] },
+            { name: '云南', value: 1385, d: [1385, 3852, 1402, 1922] },
+            { name: '西藏', value: 40, d: [40, 1257, 41, 82] },
+            { name: '陕西', value: 2227, d: [2227, 5166, 3043, 4491] },
+            { name: '甘肃', value: 1551, d: [1551, 4337, 2002, 3612] },
+            { name: '青海', value: 231, d: [231, 5187, 402, 3989] },
+            { name: '宁夏', value: 1640, d: [1640, 5808, 2165, 4904] },
+            { name: '新疆', value: 2257, d: [2257, 5767, 4376, 4206] },
+        ];
+        var data2 = [
+            { name: '北京', value: 971, d: [614, 4627, 971, 4320] },
+            { name: '天津', value: 1378, d: [1110, 5331, 1378, 4314] },
+            { name: '河北', value: 4510, d: [4014, 5621, 4510, 4974] },
+            { name: '山西', value: 6329, d: [5014, 5043, 6329, 3800] },
+            { name: '内蒙古', value: 7609, d: [6039, 5074, 7609, 4532] },
+            { name: '辽宁', value: 3114, d: [3059, 4558, 3114, 4331] },
+            { name: '吉林', value: 1777, d: [1627, 3854, 1777, 3286] },
+            { name: '黑龙江', value: 2104, d: [1753, 4436, 2104, 3922] },
+            { name: '上海', value: 2264, d: [2118, 4574, 2264, 3610] },
+            { name: '江苏', value: 8727, d: [7005, 5734, 8727, 5093] },
+            { name: '浙江', value: 6062, d: [4750, 5268, 6062, 3921] },
+            { name: '安徽', value: 4915, d: [3217, 5571, 4915, 4487] },
+            { name: '福建', value: 2902, d: [2631, 4341, 2902, 3161] },
+            { name: '江西', value: 1918, d: [1506, 4521, 1918, 4560] },
+            { name: '山东', value: 9540, d: [6825, 4962, 9540, 5187] },
+            { name: '河南', value: 6431, d: [5353, 4847, 6431, 3855] },
+            { name: '湖北', value: 2694, d: [2132, 4364, 2694, 3985] },
+            { name: '湖南', value: 2322, d: [1905, 4776, 2322, 3270] },
+            { name: '广东', value: 7742, d: [5752, 4977, 7742, 3698] },
+            { name: '广西', value: 2185, d: [1490, 4698, 2185, 3008] },
+            { name: '海南', value: 464, d: [389, 5325, 464, 4241] },
+            { name: '重庆', value: 1343, d: [724, 4671, 1343, 3259] },
+            { name: '四川', value: 1642, d: [1491, 4048, 1642, 2121] },
+            { name: '贵州', value: 3014, d: [2183, 5073, 3014, 3980] },
+            { name: '云南', value: 1402, d: [1385, 3852, 1402, 1922] },
+            { name: '西藏', value: 41, d: [40, 1257, 41, 82] },
+            { name: '陕西', value: 3043, d: [2227, 5166, 3043, 4491] },
+            { name: '甘肃', value: 2002, d: [1551, 4337, 2002, 3612] },
+            { name: '青海', value: 402, d: [231, 5187, 402, 3989] },
+            { name: '宁夏', value: 2165, d: [1640, 5808, 2165, 4904] },
+            { name: '新疆', value: 4376, d: [2257, 5767, 4376, 4206] },
+        ];
+
+        var option = {
+            backgroundColor: '#B2E0FF',  		// 图表背景色
+
+            title: {
+                text: '火电数据',
+                subtext: '装机容量 / 利用小时数',
+                left: 'center',
+                subtextStyle: {
+                    color: '#5C8199'
+                },
+                textStyle: {
+                    color: '#0F4366',
+                    fontSize: 22
+                },
+
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: function (param) {
+                    param = param.data;
+                    if (param == undefined) return ""
+                    if (param.d == undefined) return ""
+                    var d = param.d;
+                    return "<div class='tp'><div class='hd'>" + param.name + "</div>" + "" +
+                        "<b>2012</b> <div><span class='emp'>装机容量:</span>" + d[0] + " <span class='emp'>利用小时数:</span>" + d[1] + "</div> <b>2016</b> <div><span class='emp'>装机容量:</span>" + d[2] + " <span class='emp'>利用小时数:</span>" + d[3] + "</div></div>";
+                }
+            },
+            legend: {
+                orient: 'vertical',
+                left: 300,
+                top: 80,
+                data: ['2012装机容量', '2016装机容量'],
+                selectedMode: 'single',
+                inactiveColor: '#889',
+                textStyle: {
+                    color: '#333333'
+                }
+            },
+            visualMap: {
+                min: 0,
+                max: 10000,
+                left: 120,
+                bottom: 50,
+                text: ['高', '低'],           // 文本，默认为数值文本
+                calculable: true,
+                color: ['#FF1930', '#80E5FF'],
+                opacity: 80,
+                itemHeight: 100,
+                textStyle: {
+                    color: '#333333'
+                }
+            },
+            toolbox: {
+                show: false,
+                orient: 'vertical',
+                left: 'right',
+                top: 'center',
+                feature: {
+                    dataView: { readOnly: false },
+                    restore: {},
+                }
+            },
+
+            itemStyle: {					// 定义样式
+                normal: {					// 普通状态下的样式
+                    areaColor: '#99EBFF',
+                    borderColor: '#111'
+                },
+                emphasis: {					// 高亮状态下的样式
+                    areaColor: '#2a333d',
+                    shadowOffsetX: 0,
+                    shadowOffsetY: 0,
+                    shadowBlur: 20,
+                    borderWidth: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                normal: {
+                    show: true
+                },
+                emphasis: {
+                    show: true
+                }
+            },
+            series: [
+                {
+                    name: '2012装机容量',
+                    type: 'map',
+                    mapType: 'china',
+                    roam: false,
+                    data: data1,
+                    showLegendSymbol: false,
+                    itemStyle: {
+                        normal: {
+                            areaColor: '#99EBFF',
+                            borderColor: '#111'
+                        },
+                    },
+                },
+                {
+                    name: '2016装机容量',
+                    type: 'map',
+                    mapType: 'china',
+                    roam: false,
+                    data: data2,
+                    showLegendSymbol: false,
+                    itemStyle: {
+                        normal: {
+                            areaColor: '#99EBFF',
+                        },
+                    },
+
+                }
+            ]
+        };
+        myChart.setOption(option);
+
+    </script>
+
+</body>
+
+</html>
