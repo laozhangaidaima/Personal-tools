@@ -19,18 +19,17 @@
     <script src="../js/linq.min.js"></script>
 
     <style>
-
-
+        div{
+            height: 300px;
+        }
     </style>
-
-    <script>
-    </script>
 
 </head>
 
 <body>
     <div id="app-7">
-        <todo-item v-bind:todo="msg"></todo-item>
+        <div  v-on:click="test">123</div>
+
     </div>
 </body>
 <script>
@@ -45,7 +44,13 @@
         el: '#app-7',
         data: {
             msg: "123321"
-        }
+        },
+        methods: {
+            test(e) {
+                console.log("test -> e", e)
+                
+            }
+        },
     })
 </script>
 
