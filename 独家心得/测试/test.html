@@ -1,51 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Hello, World</title>
-    <style type="text/css">
-        html {
-            height: 100%
-        }
-
-        body {
-            height: 100%;
-            margin: 0px;
-            padding: 0px
-        }
-
-        #container {
-            height: 100%
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body>div:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            background-color: orange;
         }
     </style>
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=97pQawQGYD0jxeKtXkwlByhG2VqrWx5z">
-//v3.0版本的引用方式：src="http://api.map.baidu.com/api?v=3.0&ak=您的密钥"
-    </script>
 </head>
 
 <body>
-    <div id="container"></div>
-    <script type="text/javascript">
 
+    <div>123</div>
+    <div>466</div>
+    <div>5685</div>
 
-        // let arr = [1, 2, 3]
-        // function test(arr) {
-        //     arr[0] = 10
-        // }
-        // test(arr)
-        // console.log("arr", arr)
+    <script>
+        let a = document.querySelector("body > div:nth-child(1)")
+        console.log("a", a)
 
+        https://localhost:5002/NetworkDevice/GetServerList
 
-        let a = 10
-        function test(a) {
-            a = 20
-        }
-        console.log("a", a);
+        [{"id":1,"name":"SNMP采集服务器","address":"219.153.16.4","nodeId":20005,"nodeName":"重庆市电信公司","create":"2014-05-26T15:05:53.973","descr":"","lastActive":"0001-01-01T00:00:00","runState":0,"runDescr":null,"ctime":"2014-05-26 15:05:53"},{"id":2,"name":"SNMPV6","address":"183.66.65.105","nodeId":20005,"nodeName":"重庆市电信公司","create":"2018-09-06T15:05:53.973","descr":"","lastActive":"0001-01-01T00:00:00","runState":0,"runDescr":null,"ctime":"2018-09-06 15:05:53"}]
 
-
+        
     </script>
+
 </body>
 
 </html>

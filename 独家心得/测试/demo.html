@@ -18,38 +18,34 @@
     <script src="../js/v-charts.min.js"></script>
     <script src="../js/linq.min.js"></script>
 
-    <style>
-        div{
-            height: 300px;
-        }
-    </style>
+
 
 </head>
 
 <body>
     <div id="app-7">
-        <div  v-on:click="test">123</div>
 
     </div>
+
+    <script>
+        function test() {
+            var a = 1
+            console.log("123");
+
+        }
+        test()
+        console.log("test -> a", a)
+
+        1029089786
+    </script>
+
 </body>
 <script>
-    Vue.component('todo-item', {
-        props: {
-            todo: String,
-        },
-        template: '<div>{{ todo }}</div>'
-    })
-
     var app7 = new Vue({
         el: '#app-7',
-        data: {
-            msg: "123321"
-        },
+        data: {},
         methods: {
-            test(e) {
-                console.log("test -> e", e)
-                
-            }
+
         },
     })
 </script>
