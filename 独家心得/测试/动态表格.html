@@ -10,7 +10,7 @@
     <div id="app">
         <div v-for="(outer,outerIndex) in dataList.length " style="display: flex;">
 
-            <div class="useName" >{{useNameArr[outerIndex] }}</div>
+            <div class="useName">{{useNameArr[outerIndex] }}</div>
 
             <div class="mainTable">
                 <table class="table" v-for="(inner,innerIndex) in dataList[0].length">
@@ -20,8 +20,6 @@
                             </th>
                         </tr>
                     </thead>
-
-
 
                     <tbody v-if="needRowSpan.length>0">
                         <tr v-for="(items,index) in dataList[outerIndex][innerIndex]">
@@ -49,10 +47,17 @@
         data() {
             return {
                 activeColor: 100,
-                useNameArr:["阿里","百度"],
-
-                columns: [
-                    {
+                /**
+                 * 左侧用户名
+                 * 返回数组
+                 */
+                useNameArr: ["阿里", "百度"],
+                /**
+                 * 表头
+                 * 有嵌套关系要写在children里面
+                 * hasrowspan: true 有跨行就要加 只需要在资源返回这个字段
+                 */
+                columns: [{
                         title: '节点',
                         key: 'node',
                     },
@@ -105,10 +110,16 @@
                 ], //表头
                 maxHeight: 1, //表头总共占的行数
                 colKeyList: [], //所有的key
+                /**
+                 * 表格数据
+                 * 数据结构： [[[{阿里的数据}]],[[{百度的数据}]],[],... ]
+                 */
+
+
                 dataList: [
                     // 客户1
                     [
-                        // 一
+                        // 第一组表格
                         [{
                                 node: "重庆五里店IDC中心1",
                                 resource: "机柜(个)",
@@ -141,7 +152,7 @@
                             },
 
                         ], //tbody具体数据
-                        // 二
+                        // 第二组表格
                         [{
                                 node: "重庆五里店IDC中心2",
                                 resource: "带宽（Mbps）",
@@ -174,7 +185,7 @@
                             },
 
                         ], //tbody具体数据
-                        // 三
+                        // 第三组表格
                         [{
                                 node: "重庆五里店IDC中心2",
                                 resource: "IP(个)",
