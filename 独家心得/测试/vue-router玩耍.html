@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+
+
+
+
+        <router-view></router-view>
+
+        <router-link to="/test1">test1</router-link>
+        <router-link to="/test2">test2</router-link>
+        <router-link to="/test3">test3</router-link>
+    </div>
+
+    <script>
+        const test1 = {
+
+            template: `
+            <div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+            <div>我出现了1 </div>
+        </div>
+            `
+        }
+        const test2 = {
+            scrollBehavior(to, from, savedPosition) {
+                console.log("scrollBehavior -> savedPosition", savedPosition)
+                return {
+                    x: 0,
+                    y: 400
+                }
+            },
+            template: `
+            <div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+            <div>我出现了2 </div>
+        </div>
+            `
+        }
+        const test3 = {
+            scrollBehavior(to, from, savedPosition) {
+                return {
+                    x: 0,
+                    y: 1000
+                }
+            },
+            template: `
+            <div>
+            <div>我出现了3 </div>
+            <div>我出现了3 </div>
+            <div>我出现了3 </div>
+            <div>我出现了3 </div>
+            <div>我出现了3 </div>
+            <div>我出现了3 </div>
+            <div>我出现了3 </div>
+            <div>我出现了3 </div>
+            <div>我出现了3 </div>
+            <div>我出现了3 </div>
+            <div>我出现了3 </div>
+            <div>我出现了3 </div>
+            <div>我出现了3 </div>
+            <div>我出现了3 </div>
+            <div>我出现了3 </div>
+            <div>我出现了3 </div>
+            <div>我出现了3 </div>
+            <div>我出现了3 </div>
+            <div>我出现了3 </div>
+            <div>我出现了3 </div>
+            <div>我出现了3 </div>
+            <div>我出现了3 </div>
+            <div>我出现了3 </div>
+        </div>
+            `
+        }
+
+        const router = new VueRouter({
+            routes: [
+                // 动态路径参数 以冒号开头
+                {
+                    path: '/test1',
+                    component: test1,
+                },
+                {
+                    path: '/test2',
+                    component: test2
+                },
+                {
+                    path: '/test3',
+                    component: test3
+                },
+
+
+            ],
+            scrollBehavior(to, from, savedPosition) {
+                console.log("123");
+
+                console.log("scrollBehavior -> savedPosition", savedPosition)
+                return {
+                    x: 0,
+                    y: 1000
+                }
+            },
+        })
+
+
+        // router.beforeEach((to, from,next) => {
+        //     console.log("from", from)
+        //     console.log("to", to)
+        //     next()
+        // })
+
+
+
+
+        // 4. 创建和挂载根实例。
+        // 记得要通过 router 配置参数注入路由，
+        // 从而让整个应用都有路由功能
+        const app = new Vue({
+            router,
+            methods: {
+                tiaozhuan: function () {
+                    // router.push('user/profile')
+
+                    // router.push({ path: 'user', query: { plan: 'private' }})
+
+                    // 对象
+                    // router.push({
+                    //     path: 'user'
+                    // })
+
+                    router.push({
+                        name: 'user',
+                        path: '/user',
+                        params: {
+                            userId: '123'
+                        }
+                    })
+
+                }
+            },
+
+        }).$mount('#app')
+
+        // 现在，应用已经启动了！
+    </script>
+
+</body>
+
+</html>

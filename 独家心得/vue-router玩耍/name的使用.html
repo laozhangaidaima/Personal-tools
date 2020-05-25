@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="tiaozhuan" name="user">测试</button>
+        <router-link to="/user">Go to Foo</router-link>
+        <router-view></router-view>
+    </div>
+    <script>
+        const User = {
+            template: `
+            <div class="user">
+            <h2>User {{ '我是主页' }}</h2>
+            <router-view></router-view>
+            </div>
+        `
+        }
+        const UserHome = {
+            template: `
+            <div class="user">
+            <h2>User {{ '我是子路由'}}</h2>
+            <router-view></router-view>
+            </div>
+        `
+        }
+        const router = new VueRouter({
+            routes: [{
+                name: 'user', //命名name才能跳转
+                path: '/user',
+                component: User,
+                children: [
+                    {
+                        path: 'profile',
+                        component: UserHome
+                    },
+                ]
+            }]
+        })
+        const app = new Vue({
+            router,
+            methods: {
+                tiaozhuan: function () {
+                    router.push({
+                        name: 'user', //命名name才能跳转
+                        path: '/user',
+                        params: {
+                            userId: '123'
+                        }
+                    })
+                }
+            },
+        }).$mount('#app')
+    </script>
+</body>
+</html>
