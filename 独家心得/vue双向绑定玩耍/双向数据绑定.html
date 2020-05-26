@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input onkeyup="change(event)" />
+    <p></p>
+
+    <script>
+        const data = {
+            value: ''
+        }
+        const change = e => {
+            // 更新输入值
+            data.value = e.target.value;
+            // 且，同步值的展示
+            document.querySelector('p').innerText = data.value
+        }
+
+      
+    </script>
+</body>
+
+</html>

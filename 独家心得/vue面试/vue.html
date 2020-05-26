@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vue事件处理</title>
+</head>
+
+<body>
+    <div id="demo">
+        <h1>vue组件data为什么必须是个函数? </h1>
+        {{counter1}}
+        <comp></comp>
+        <comp></comp>
+    </div>
+    <script src="../publicStatic/js/vue.js"></script>
+
+    <script>
+        Vue.component('comp', {
+            template: '<div @click="counter++">{{counter}}</div>',
+            data() {
+                return {
+                    counter: 0
+                }
+            }
+        })
+        // 创建实例
+        const app = new Vue({
+            el: '#demo',
+            data() {
+                return {
+                    counter1: 10000
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

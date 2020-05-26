@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        var modeng = {}
+        Object.defineProperty(modeng, 'age', { // 第一个参数是对象 第二个参数是对象的键
+            get: function () { // 调用的时候执行get
+                console.log("获取年龄");
+                return age;
+            },
+            set: function (newVal) {  // 设置的时候执行set
+                console.log("设置年龄");
+                age = newVal;
+            }
+        });
+        modeng.age = 18;
+        console.log(modeng.age);
+    </script>
+</body>
+
+</html>

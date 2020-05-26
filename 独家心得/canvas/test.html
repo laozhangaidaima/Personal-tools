@@ -1,0 +1,27 @@
+<html>
+
+<head>
+    <title>Canvas tutorial</title>
+    <style type="text/css">
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<canvas id="tutorial" width="300" height="300"></canvas>
+</body>
+<script type="text/javascript">
+    var ctx;
+
+    function draw() {
+        var canvas = document.getElementById('tutorial');
+        if (!canvas.getContext) return;
+        ctx = canvas.getContext("2d");
+        ctx.font = "100px sans-serif"
+        ctx.fillText("天若有情", 10, 100);
+        ctx.strokeText("天若有情", 10, 200)
+    }
+    draw();
+</script>
+
+</html>
