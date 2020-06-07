@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 300px;
+            height: 300px;
+            background: #ddd;
+            position: relative;
+        }
+
+        #child {
+            width: 150px;
+            height: 100px;
+            background: orange;
+            position: absolute;
+            top: 50%;
+            margin: -50px 0 0 0;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- <div style="height: 1000px;width: 500px;background-color: orange; ">
+        <div style="width: 200px;height: 200px;background-color: rgb(255, 0, 21);  "></div>
+        <div style="width: 200px;height: 200px;background-color: orangered; "></div>
+        <div style="width: 200px;height: 200px;background-color: purple ;float: right; "></div>
+    </div> -->
+
+    <!-- <div style="height: 200px;width: 200px;background-color: orangered;padding: 10px;border:5px solid red;margin: 20px; "></div> -->
+    <!-- <div id="box">
+        <div id="child"></div>
+    </div> -->
+
+    <script>
+        // function test() {
+
+        // }
+
+        // let arr = []
+
+        // let obj = {}
+
+        // console.log("obj",typeof obj)
+        // console.log("1", typeof test);
+        // console.log("2", typeof arr);
+
+        // function add(a, b) {
+        //     console.log(a + b);
+        // }
+
+        // function sub(a, b) {
+        //     console.log(a - b);
+        // }
+        // add.call(sub, 3, 1);
+
+
+        // let options = {
+        //     value: '选项1',
+        //     label: '黄金糕'
+        // };
+
+        // let options = [123, 432, 523, 52]
+
+        // for (let i in options) {
+        //     console.log("for in", i);
+        //     // 0,1,2,3
+        // }
+
+        // for (let i of options) {
+        //     console.log("for of", i);
+        //     // 123, 432, 523, 52
+        // }
+
+
+        // let arr = [1, 2, 3, 4, 5];
+        // // arr.forEach((num, index) => {
+        // //     arr[index] = num * 2
+        // // });
+        // // console.log("arr",arr);
+        // // [2, 4, 6, 8, 10]
+
+
+        // let newArr = arr.map((i, j, k) => {
+        //     console.log("k", k)
+        //     console.log("j", j)
+        //     console.log("i", i)
+        // });
+        // console.log("newArr", newArr) //[2, 4, 6, 8, 10]
+        // console.log("arr", arr); //[1, 2, 3, 4, 5]
+
+
+
+        // var arr = [1, 2, 4, 5, 6, 9, 10, 15];
+        // var r = arr.filter(function (x) {
+        //     return x % 2 !== 0;
+        // });
+        // console.log("arr", arr)
+        // console.log("r", r) // [1, 5, 9, 15]
+
+        // var arr = [1, 2, 3, 4];
+        // arr.reduce(function (pre, cur) {
+        //     console.log("pre", pre)
+        //     console.log("cur", cur)
+        //     return pre + cur
+        // }); // return 10
+
+        // console.log(Number(true)) //1   
+        // console.log(Number(null)) //0      
+        // console.log(Number(undefined)) //NaN    
+        // console.log(typeof NaN) //number
+        // console.log(0.1 + 0.2 == 0.3, 0.5 + 0.1 == 0.6); //false true      
+        // console.log(true == 1); //true      
+        // console.log(true === 1); //false
+
+        // var data = {
+        //     a: 1,
+        //     b: 2,
+        //     c: 3
+        // }
+        // let newArr = []
+        // for (let i in data) {
+        //     newArr.push(i)
+        //     newArr.push(data[i])
+        // }
+        // console.log("newArr", newArr)
+
+        // fn(); //2
+        // function fn() {
+        //     console.log(1)
+        // };
+        // fn() //2
+        // var fn = 10;
+        // fn(); //Uncaught TypeError: fn is not a function 到这里，程序终止，不往下执行了
+        // function fn() {
+        //     console.log(2)
+        // };
+        // fn();
+
+
+        // for (var i = 0; i < 5; i++) {
+        //     setTimeout(function () {
+        //         console.log(i)
+        //     }, 1000*i )
+        // }
+
+        // console.log(-"2");
+
+        // console.log(1 + "2" + "2"); //122
+        // console.log(1 + +"2" + "2"); //32
+        // console.log(1 + -"1" + "2"); //02
+        // console.log(+"1" + "1" + "2"); //112
+        // console.log("A" - "B" + "2"); //NaN2
+        // console.log("A" - "B" + 2); //NaN
+        // console.log("0||1=" + (0 || 1)); //0||1=1
+        // console.log("0||1=" + (1 || 2)); //0||1=1
+        // console.log("0&&1=" + (1 && 2)); //0&&1=2
+        // console.log("0&&1=" + (0 && 2)) //0&&1=2
+
+        // let arr = [0, 1, 2, '1', '1', 3, '3']
+        // let newArr = Array.from(new Set(arr))
+        // console.log("newArr", newArr)
+
+        // let arr = [0, 1, 2, '1', '1', 3, '3']
+        // arr.splice(1, 1)
+        // console.log("arr", arr)
+
+
+        // var a = {},
+        //     b = {
+        //         key: "b"
+        //     },
+        //     c = {
+        //         key: "c"
+        //     };
+        // a[b] = 123;
+        // a[c] = 456;
+        // console.log(a[c]); //456
+
+        var a = 3
+        var a = 5
+        // let a = 1
+        // let a = 2
+        console.log("a", a)
+    </script>
+
+
+</body>
+
+</html>
