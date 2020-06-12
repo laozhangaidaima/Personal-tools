@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            float: left;
+        }
+
+        section:nth-child(2)::after {
+            content: " ";
+            display: block;
+            clear: both;
+        }
+
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .w100 {
+            width: 94vw;
+        }
+    </style>
+</head>
+
+<body>
+    <header>差客e族登录</header>
+
+    <section>
+        <ul>
+            <li>
+                <p><input type="tel" maxlength="11" placeholder="请输入手机号码" class="w100" />123</p>
+
+            </li>
+            <li><input type="tel" maxlength="4" placeholder="请输入验证码" class="w100" />321</li>
+        </ul>
+
+    </section>
+
+    <section>
+        <button>登录</button>
+        <a href="#">手机验证码</a>
+    </section>
+
+    <footer>
+        登录代表同意
+    </footer>
+
+    <script>
+        const baseSize = 32;
+        // 设置 rem 函数
+        function setRem() {
+            // 当前页面宽度相对于 750 宽的缩放比例，可根据自己需要修改。
+            const scale = document.documentElement.clientWidth / 750;
+            // 设置页面根节点字体大小
+            document.documentElement.style.fontSize =
+                baseSize * Math.min(scale, 2) + "px";
+        }
+
+        window.onload = function () {
+            // 初始化
+            setRem();
+        };
+
+        // 改变窗口大小时重新设置 rem
+        window.onresize = function () {
+            setRem();
+        };
+    </script>
+
+</body>
+
+</html>

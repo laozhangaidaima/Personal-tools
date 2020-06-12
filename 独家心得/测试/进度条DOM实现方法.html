@@ -1,0 +1,50 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.xxxxxxxxxx.com">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script language="javascript" type="text/javascript">
+        i = 0;
+
+        function startbar() {
+            showbar = setInterval("setbar()", 500);
+        }
+
+        function setbar() {
+            i += 5;
+            if (i >= 100) {
+                clearInterval(showbar);
+            }
+            document.getElementById("bar").style.width = i + "%";
+            document.getElementById("bar").innerHTML = i + "%";
+        }
+    </script>
+    <link type="text/css" href="yang.css" rel="stylesheet" />
+    <title>CSS 进度条</title>
+</head>
+
+<body onload="startbar();">
+    <div id="loadbar">
+        <strong id="bar" style="width:30%">30%</strong>
+    </div>
+</body>
+
+</html>
+
+<style>
+    #loadbar {
+        width: 280px;
+        background-color: #000;
+        border: 1px solid #000;
+    }
+
+    #bar {
+        display: block;
+        font-family: Arial,
+            Helvetica, sans-serif;
+        font-size: 12px;
+        background-color: #00d0ff;
+        text-align: center;
+    }
+</style>
