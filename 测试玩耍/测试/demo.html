@@ -1,60 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
 <body>
     <script>
-        var arr = [{
-                name: "孙悟空",
-                weapon: "如意金箍棒",
-                experience: "大闹天宫、西天取经",
-                post: "1"
-            },
-            {
-                name: "发顺丰",
-                weapon: "如意金箍棒",
-                experience: "大闹天宫、西天取经",
-                post: "1"
-            },
-            {
-                name: "孙悟空",
-                weapon: "如意金箍棒",
-                experience: "大闹天宫、西天取经",
-                post: "1"
-            },
-            {
-                name: "孙悟空",
-                weapon: "如意金箍棒",
-                experience: "大闹天宫、西天取经",
-                post: "1"
-            },
-            {
-                name: "孙悟空",
-                weapon: "如意金箍棒",
-                experience: "大闹天宫、西天取经",
-                post: "1"
-            }
-        ];
-
-        function unique(arr) {
-            for (var i = 0; i < arr.length; i++) {
-                for (var j = i + 1; j < arr.length; j++) {
-                    if (arr[i].name == arr[j].name) { //第一个等同于第二个，splice方法删除第二个
-                        arr[i].post += arr[j].post
-                        arr.splice(j, 1);
-                        j--;
-                    }
-                }
-            }
-            return arr;
+        if (true==false) {
+            console.log("123");
+            
         }
-        console.log(" unique(arr)", unique(arr))
     </script>
 </body>
-
 </html>

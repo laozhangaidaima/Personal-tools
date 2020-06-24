@@ -46,3 +46,4 @@ MoveCaret:
     Send {Home}{Right 3}
     SetTimer, MoveCaret, Off
 return
+:R:u1::15928446337 
