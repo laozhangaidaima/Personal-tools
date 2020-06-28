@@ -23,10 +23,10 @@
     ; This will move the InputBox's caret to a more friendly position:
     SetTimer, MoveCaret, 10
     ; Show the InputBox, providing the default hotstring:
-    InputBox, Hotstring, New Hotstring, Type your abreviation at the indicated insertion point. You can also edit the replacement text if you wish.`n`nExample entry: :R:btw`::by the way,,,,,,,, :R:`::%Hotstring%
+    InputBox, Hotstring, New Hotstring, Type your abreviation at the indicated insertion point. You can also edit the replacement text if you wish.`n`nExample entry: :O:btw`::by the way,,,,,,,, :O:`::%Hotstring%
         if ErrorLevel  ; The user pressed Cancel.
         return
-    if InStr(Hotstring, ":R`:::")
+    if InStr(Hotstring, ":O`:::")
     {
         MsgBox You didn't provide an abbreviation. The hotstring has not been added.
         return
@@ -46,4 +46,6 @@ MoveCaret:
     Send {Home}{Right 3}
     SetTimer, MoveCaret, Off
 return
-:R:u1::15928446337 
+; O  确定键 输入的空格、回车是不生效的
+:O:u11::15928446337
+:O:u12::ly123456
