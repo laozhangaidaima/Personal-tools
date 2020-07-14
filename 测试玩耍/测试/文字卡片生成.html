@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>一个测试</title>
+    <link rel="stylesheet" href="../../public/js/element.css" />
+
+    <script src="../../public/js/vue.js"></script>
+    <script src="../../public/js/element.js"></script>
+    <script src="../../public/js/moment.min.js "></script>
+    <script src="../../public/js/echarts.min.js"></script>
+
+    <style>
+        .btn {
+            text-align: right;
+        }
+
+        .card {
+            margin-top: 60px;
+        }
+
+        .box-card {
+            color: #9A9A9A;
+            line-height: 30px;
+            padding: 20px;
+            border: 1px solid #EBEEF5;
+            background-color: #FFF;
+            color: #303133;
+            -webkit-transition: .3s;
+            transition: .3s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <el-row>
+            <el-col :span="24">
+                <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 4}" placeholder="请输入内容" v-model="textarea2">
+                </el-input>
+            </el-col>
+
+        </el-row>
+
+        <el-row class="card">
+            <el-col :span="24">
+                <el-card class="box-card">
+                    {{textarea2}}
+                </el-card>
+            </el-col>
+        </el-row>
+
+        <el-row class="">
+            <el-col :span="24">
+                <!-- 引号 -->
+                <div>
+                    <img src="../../public/img/左引号.png" alt="" srcset="">
+                </div>
+                <div class="box-card">
+                    {{textarea2}}
+                </div>
+            </el-col>
+        </el-row>
+
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            textarea2: '',
+        },
+        watch: {},
+        methods: {
+
+
+
+        },
+        mounted: function () {
+
+        },
+
+        created: function () {}
+    });
+</script>
+
+</html>

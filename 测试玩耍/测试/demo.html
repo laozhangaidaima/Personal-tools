@@ -2,41 +2,46 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>一个测试</title>
+    <link rel="stylesheet" href="./js/element.css" />
+
+    <script src="./js/vue.js"></script>
+    <script src="./js/element.js"></script>
+    <script src="./js/moment.min.js "></script>
+    <script src="./js/echarts.min.js"></script>
+
     <style>
-        .test {
-            width: 22.1875rem;
-            height: 100px;
-            padding: 0.9375rem;
-            margin: 0 auto;
-            position: relative;
-            background-color: #ffffff;
-            border-radius: 3px;
-        }
 
-        .test::before {
-            content: '';
-            display: block;
-            left: -0.625rem;
-            background-color: #02a6ff;
-            width: 1.25rem;
-            height: 1.25rem;
-            border-radius: 50%;
-            position: absolute;
-            top: 3.89063rem;
-        }
-
-        .test::after {
-            right: -0.625rem;
-            background-color: #3e5ceb;
-        }
     </style>
 </head>
 
 <body>
-    <div class="test">123</div>
+    <div id="app">
+
+
+    </div>
 </body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+
+        },
+        watch: {},
+        methods: {
+
+
+
+        },
+        mounted: function () {
+
+        },
+
+        created: function () {}
+    });
+</script>
 
 </html>
