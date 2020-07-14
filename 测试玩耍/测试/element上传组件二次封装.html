@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>一个测试</title>
+    <link rel="stylesheet" href="../../public/js/element.css" />
+
+    <script src="../../public/js/vue.js"></script>
+    <script src="../../public/js/element.js"></script>
+    <script src="../../public/js/moment.min.js "></script>
+    <script src="../../public/js/echarts.min.js"></script>
+    <script src="../../public/js/axios.min.js"></script>
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <el-upload class="upload-demo" ref="upload" action="cunstomer" name="org_files" :multiple="true"
+            :on-preview="handlePreview" :on-remove="handleRemove" :file-list="fileList" :auto-upload="false"
+            :http-request="uploadFile">
+            <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+            <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传</el-button>
+        </el-upload>
+
+
+
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            fileList: [],
+            formDate: ""
+        },
+        watch: {},
+        methods: {
+
+
+
+        },
+        mounted: function () {
+
+        },
+
+        created: function () {},
+        methods: {
+            uploadFile(file) {
+                console.log(file.file)
+                console.log("uploadFile");
+                this.formDate.append('org_files', file.file);
+            },
+            submitUpload() {
+                console.log("submitUpload");
+                this.formDate = new FormData()
+                this.$refs.upload.submit(); //执行此步骤 相当于执行 http-request 的自定义实现方法
+                this.formDate.append('其他参数名称', "*****");
+                let config = {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }
+                axios.post("url", this.formDate, config).then(res => {
+                    console.log(res)
+                }).catch(res => {
+                    console.log(res)
+                })
+            },
+            handleRemove(file, fileList) {
+                console.log(file, fileList);
+            },
+            handlePreview(file) {
+
+            }
+        },
+
+
+
+    });
+</script>
+
+</html>
