@@ -1,47 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>一个测试</title>
-    <link rel="stylesheet" href="./js/element.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function addStr(oldStr, addItem, afterWhich) {
+        // 在指定字符串后面添加指定字符串
+        var strArr = oldStr.split("");
+        strArr.splice(
+          oldStr.indexOf(afterWhich) + afterWhich.length,
+          0,
+          addItem
+        );
+        return strArr.join("");
+      }
 
-    <script src="./js/vue.js"></script>
-    <script src="./js/element.js"></script>
-    <script src="./js/moment.min.js "></script>
-    <script src="./js/echarts.min.js"></script>
+      let oldStr =
+        "http://m.pay.shanglv51.com/#/?appid=HNTV&applyId=REQ001200424389&businessType=1&code=sl2d68d140bab5f7e10b2303e64d2155&number=1&sign=WPsJmbm8H0ANNMV0SNOmGOUqwdBZW6s8Upi0%2Brmx0sA%3D";
+      // let addItem = "#";
+      // let afterWhich = "/WxHandle";
+      let afterWhich = "#/";
+      let addItem = "WxHandle";
+      let res = addStr(oldStr, addItem, afterWhich);
+      console.log("res123", res)
 
-    <style>
+      let index = res.indexOf(addItem);
+      console.log("index", index);
 
-    </style>
-</head>
+      res = res.substr(index, index + 1);
 
-<body>
-    <div id="app">
-
-
-    </div>
-</body>
-<script>
-    var vm = new Vue({
-        el: "#app",
-        data: {
-
-        },
-        watch: {},
-        methods: {
-
-
-
-        },
-        mounted: function () {
-
-        },
-
-        created: function () {}
-    });
-</script>
-
+      console.log("res", res);
+    </script>
+  </body>
 </html>
