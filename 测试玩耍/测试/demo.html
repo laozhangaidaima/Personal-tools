@@ -1,38 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <script>
-      function addStr(oldStr, addItem, afterWhich) {
-        // 在指定字符串后面添加指定字符串
-        var strArr = oldStr.split("");
-        strArr.splice(
-          oldStr.indexOf(afterWhich) + afterWhich.length,
-          0,
-          addItem
-        );
-        return strArr.join("");
-      }
-
-      let oldStr =
-        "http://m.pay.shanglv51.com/#/?appid=HNTV&applyId=REQ001200424389&businessType=1&code=sl2d68d140bab5f7e10b2303e64d2155&number=1&sign=WPsJmbm8H0ANNMV0SNOmGOUqwdBZW6s8Upi0%2Brmx0sA%3D";
-      // let addItem = "#";
-      // let afterWhich = "/WxHandle";
-      let afterWhich = "#/";
-      let addItem = "WxHandle";
-      let res = addStr(oldStr, addItem, afterWhich);
-      console.log("res123", res)
-
-      let index = res.indexOf(addItem);
-      console.log("index", index);
-
-      res = res.substr(index, index + 1);
-
-      console.log("res", res);
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <div style="border-bottom-width: 4px;color: red;">123</div>
+</body>
 </html>
