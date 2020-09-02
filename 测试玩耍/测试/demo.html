@@ -5,30 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body>
-    <div style="font-size: 1rem;">123</div>
-    <div style="height: 30px;width: 1rem;background-color: red;" ></div>
-  </body>
-
+  <body></body>
   <script>
-    const baseSize = 32;
-    // 设置 rem 函数
-    function setRem() {
-      // 当前页面宽度相对于 750 宽的缩放比例，可根据自己需要修改。
-      const scale = document.documentElement.clientWidth / 750;
-      // 设置页面根节点字体大小
-      document.documentElement.style.fontSize =
-        baseSize * Math.min(scale, 2) + "px";
-    }
-
-    window.onload = function () {
-      // 初始化
-      setRem();
+    var sayHello = function ({ name="123", surname }) {
+      console.log(`Hello ${name} ${surname}! How are you?`);
     };
 
-    // 改变窗口大小时重新设置 rem
-    window.onresize = function () {
-      setRem();
-    };
+    sayHello({ name: "John", surname: "Smith" });
+    // -> Hello John Smith! How are you?
   </script>
 </html>
