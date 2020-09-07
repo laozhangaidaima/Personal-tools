@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "C:\\Users\\zhangHan\\AppData\\Local\\Programs\\Python\\Python38\\python.exe"
+    "python.pythonPath": "C:\\Users\\zhangHan\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+    "liveServer.settings.port": 5501
 }
