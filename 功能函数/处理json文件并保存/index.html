@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 引入json -->
+    <script src="./a.js"></script>
+    <script>
+      // data 从js引入
+      //   处理data
+      let values = Object.values(data);
+      let totalValues = [];
+      for (let i = 0; i < values.length; i++) {
+        for (let j = 0; j < values[i].length; j++) {
+          totalValues.push({
+            cityName: values[i][j].cityName,
+            airportLogogram: values[i][j].airportLogogram,
+          });
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="clickRadio()">点击下载</button>
+  </body>
+  <script>
+    // 保存对象数据为json文件
+    function clickRadio() {
+      // 创建a标签
+      //   totalValues 是要保存的数据
+      var elementA = document.createElement("a");
+      //文件的名称为时间戳加文件名后缀
+      elementA.download = +new Date() + ".json";
+      elementA.style.display = "none";
+      //生成一个blob二进制数据，内容为json数据
+      var blob = new Blob([JSON.stringify(totalValues)]);
+      //生成一个指向blob的URL地址，并赋值给a标签的href属性
+      elementA.href = URL.createObjectURL(blob);
+      document.body.appendChild(elementA);
+      elementA.click();
+      document.body.removeChild(elementA);
+    }
+  </script>
+</html>
