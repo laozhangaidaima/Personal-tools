@@ -67,13 +67,20 @@ def saveImgs(imgs, dir_name):
             with open(dir_name+'/'+str(picture_name)+str('.') + str(f.args['wx_fmt']), 'wb') as f:
                 f.write(reponse.content)
             picture_name += 1
+    print('下载完毕')
     return dir_name
 
 
 # 处理数据
 # 执行顺序不能变
+# https://mp.weixin.qq.com/s/M9K8YbuoGBWsWGAfLDgZCw
+# https://mp.weixin.qq.com/s/TOMzOZ1mh9uWUENkTGr5Ag
+# https://mp.weixin.qq.com/s/1TGN601TFEidLkzCyC5Kaw
+# https://mp.weixin.qq.com/s/94tvOB7AskrmB944_5eEVg
+# https://mp.weixin.qq.com/s/ulbxz5F3dGiapT7qLRsTvw
+
 if __name__ == "__main__":
-    url = "https://mp.weixin.qq.com/s/rBFmOsFYtujnKQ5oUnEhbg"  # 只要更改url即可
+    url = "https://mp.weixin.qq.com/s/ulbxz5F3dGiapT7qLRsTvw"  # 只要更改url即可
     res = axios(url)
 
     soup = bsData(res, 'gb18030')
