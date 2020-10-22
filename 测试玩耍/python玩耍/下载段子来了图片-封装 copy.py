@@ -71,9 +71,10 @@ def saveImgs(imgs, dir_name):
 # https://mp.weixin.qq.com/s/9Pk8alZr8dyBtWcdAC5hXw
 # https://mp.weixin.qq.com/s/ucksMEBA5k59LjHcyj2wsw
 # https://mp.weixin.qq.com/s/7Hs7uRy7s_K6ffHmleZxBw
-
+# https://mp.weixin.qq.com/s/ZxopQK_zIP42B7hUXrnGOg
+# https://mp.weixin.qq.com/s/ce8pJEOqwfx1ce4BZTcfLg
 if __name__ == "__main__":
-    url = "https://mp.weixin.qq.com/s/7Hs7uRy7s_K6ffHmleZxBw"  # 只要更改url即可
+    url = "https://mp.weixin.qq.com/s/ce8pJEOqwfx1ce4BZTcfLg"  # 只要更改url即可
     res = axios(url)
 
     soup = bsData(res, 'gb18030')
