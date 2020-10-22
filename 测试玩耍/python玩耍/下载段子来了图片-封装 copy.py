@@ -4,6 +4,7 @@ import json
 import os
 import time
 from furl import furl
+import re
 
 # 发送请求
 
@@ -39,6 +40,9 @@ def getTitle(soup):
     dir_name = soup.select('h2')[0].string  # 设置文件夹的名字
     dir_name = dir_name.replace("\n", "")
     dir_name = dir_name.strip()
+    rstr = r"[\/\\\:\*\?\"\<\>\|]"  # '/ \ : * ? " < > |'  去除不合法文件名
+    dir_name = re.sub(rstr, "_", dir_name)  # 替换为下划线
+
     return dir_name
 
 # 创建文件夹
@@ -68,11 +72,12 @@ def saveImgs(imgs, dir_name):
 
 # 处理数据
 # 执行顺序不能变
-url = "https://mp.weixin.qq.com/s/lEvf1bJtGhFY1IzC0Il0nw"
-res = axios(url)
+if __name__ == "__main__":
+    url = "https://mp.weixin.qq.com/s/rBFmOsFYtujnKQ5oUnEhbg"  # 只要更改url即可
+    res = axios(url)
 
-soup = bsData(res, 'gb18030')
-imgs = getImgUrl(soup)
-dir_name = getTitle(soup)
-getFile(dir_name)
-saveImgs(imgs, dir_name)
+    soup = bsData(res, 'gb18030')
+    imgs = getImgUrl(soup)
+    dir_name = getTitle(soup)
+    getFile(dir_name)
+    saveImgs(imgs, dir_name)
