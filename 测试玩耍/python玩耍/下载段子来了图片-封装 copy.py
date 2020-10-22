@@ -7,8 +7,6 @@ from furl import furl
 import re
 
 # 发送请求
-
-
 def axios(url):
     headers = {
         'User-Agent': 'Mozilla/5.0(Linux;Android6.0;Nexus5Build/MRA58N)AppleWebKit/537.36(KHTML,likeGecko)Chrome/81.0.4044.138MobileSafari/537.36'}
@@ -17,15 +15,11 @@ def axios(url):
     return res.text
 
 # bs4数据处理
-
-
 def bsData(res, encoding):
     soup = BeautifulSoup(res, fromEncoding=encoding)
     return soup
 
 # 获取图片url
-
-
 def getImgUrl(soup):
     img = soup.find_all("img")
     imgs = []
@@ -34,8 +28,6 @@ def getImgUrl(soup):
     return imgs
 
 # 获取title
-
-
 def getTitle(soup):
     dir_name = soup.select('h2')[0].string  # 设置文件夹的名字
     dir_name = dir_name.replace("\n", "")
@@ -46,16 +38,12 @@ def getTitle(soup):
     return dir_name
 
 # 创建文件夹
-
-
 def getFile(dir_name):
     if not os.path.exists(str(dir_name)):  # os模块判断并创建
         os.mkdir(dir_name)
     return dir_name
 
 # 保存图片
-
-
 def saveImgs(imgs, dir_name):
     picture_name = 0
     for img_url in imgs:
@@ -82,9 +70,10 @@ def saveImgs(imgs, dir_name):
 # https://mp.weixin.qq.com/s/gPQIOpvS8sV7EAxDy3QodQ
 # https://mp.weixin.qq.com/s/9Pk8alZr8dyBtWcdAC5hXw
 # https://mp.weixin.qq.com/s/ucksMEBA5k59LjHcyj2wsw
+# https://mp.weixin.qq.com/s/7Hs7uRy7s_K6ffHmleZxBw
 
 if __name__ == "__main__":
-    url = "https://mp.weixin.qq.com/s/ucksMEBA5k59LjHcyj2wsw"  # 只要更改url即可
+    url = "https://mp.weixin.qq.com/s/7Hs7uRy7s_K6ffHmleZxBw"  # 只要更改url即可
     res = axios(url)
 
     soup = bsData(res, 'gb18030')
