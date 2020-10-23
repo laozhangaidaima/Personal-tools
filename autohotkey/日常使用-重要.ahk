@@ -34,17 +34,5 @@ WheelUp::
     MouseClick, WheelUp, , , 3, 0, D, R
 Return
 
-; 按下PrintScreen 可切换菜单
-; 按下Enter 选择菜单并结束
-; 一定要按下Enter键
-PrintScreen::
-    {
-        Send, {Alt Down}
-        Send, {Tab Down}
-        keywait, Enter, D
-        Send, {Alt Up}
-        Send, {Tab Up}
-    }
-Return
 
 
