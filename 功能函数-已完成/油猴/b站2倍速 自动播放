@@ -1,0 +1,20 @@
+// ==UserScript==
+// @name        2倍速+自动播放
+// @namespace   Violentmonkey Scripts
+// @match       *://*/*
+// @grant       none
+// @version     1.0
+// @author      -
+// @description 2020/4/6 下午3:36:36
+// ==/UserScript==
+
+
+	setInterval(function () {
+		let arr = document.getElementsByTagName('video');
+		for (var i = 0; i < arr.length; i++) {
+			//默认速度2
+			arr[i].playbackRate = 2;
+			//自动播放
+            arr[i].play()
+		}
+	}, 2000);

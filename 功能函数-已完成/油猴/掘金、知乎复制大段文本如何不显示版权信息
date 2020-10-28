@@ -1,0 +1,15 @@
+### 掘金、知乎复制大段文本如何不显示版权信息
+
+```
+// ==UserScript==
+// @name        掘金、知乎复制大段文本如何不显示版权信息
+// @namespace   Violentmonkey Scripts
+// @match       *://*/*
+// @grant       none
+// @version     1.0
+// @author      -
+// @description 2020/4/6 下午3:36:36
+// ==/UserScript==
+(function () {
+document.oncopy =event => event.clipboardData.setData('text',window.getSelection(0).toString());
+})()

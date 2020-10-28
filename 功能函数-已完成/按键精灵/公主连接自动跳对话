@@ -1,0 +1,19 @@
+
+
+
+Do
+    自动跳过对话()
+Loop
+
+
+Sub 自动跳过对话()
+    Dim intX,intY
+    FindColor 1283,804,1322,844,"C6AAEF",2,1.0,intX,intY
+    If intX > -1 And intY > -1 Then
+        TracePrint intX
+        TracePrint intY
+        Tap intX, intY
+    End If
+    
+End Sub
+//定义一个过程,可以在脚本中调用这个过程

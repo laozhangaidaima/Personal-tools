@@ -1,0 +1,45 @@
+Call 马上抢()
+Delay 500
+Call 确定()
+Delay 500
+Call 提交订单()
+
+Do
+    Dim 网络时间
+    网络时间 = GetNetworkTime()
+    If 网络时间= "2020-05-10 23:09:00" Then
+        Call 马上抢()
+        Delay 100
+        Call 确定()
+        Delay 300
+        Call 提交订单()
+    End If
+
+Loop
+
+
+Sub 马上抢()
+    Dim intX,intY
+    FindPic 490,1181,698,1271,"Attachment:马上抢.png","000000",2,0.9,intX,intY
+    If intX > -1 And intY > -1 Then
+        Tap intX, intY
+    End If
+End Sub
+
+Sub 确定()
+    Dim intX,intY
+    FindPic 300,1200,429,1255,"Attachment:确定.png","000000",2,0.9,intX,intY
+    If intX > -1 And intY > -1 Then
+        Tap intX, intY
+    End If    
+End Sub
+
+Sub 提交订单()
+    Dim intX,intY
+    FindPic 535,1199,656,1241,"Attachment:提交订单.png","000000",2,0.9,intX,intY
+    If intX > -1 And intY > -1 Then 
+        TracePrint "测试成功"
+        Tap intX, intY
+    End If    
+End Sub
+

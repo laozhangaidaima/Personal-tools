@@ -1,0 +1,46 @@
+Dim 延时=ReadUIConfig("延时时间值")
+
+
+Do
+    自动刷冒险()
+Loop
+
+
+Sub 自动刷冒险()
+    Dim intX,intY
+    //我是一个过程,被你调用了
+    FindPic 89, 856, 195, 1053, "Attachment:闯关.png", "000000", 0, 0.9, intX, intY
+    Delay 延时
+    If intX > -1 And intY > -1 Then
+        Tap intX, intY
+       
+    End If
+	
+
+
+    FindPic 670, 1176, 709, 1266, "Attachment:跳过.png", "000000", 4, 0.9, intX, intY
+    Delay 延时
+    If intX > -1 And intY > -1 Then
+        Tap intX, intY
+      
+    End If
+
+
+    FindPic 51, 543, 112, 726, "Attachment:继续.png", "000000", 2, 0.9, intX, intY
+    Delay 延时
+    If intX > -1 And intY > -1 Then
+        Tap intX, intY
+       
+    End If
+
+
+    FindPic 28, 995, 82, 1167, "Attachment:再次挑战.png", "000000", 2, 0.9, intX, intY
+    Delay 延时
+    If intX > -1 And intY > -1 Then
+        Tap intX, intY
+      
+    End If
+    
+    
+End Sub
+//定义一个过程,可以在脚本中调用这个过程
