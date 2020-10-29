@@ -22,10 +22,10 @@ function 一() {
 function 零() {
   click(unlockCode[6], unlockCode[7]);
 }
-
+// 息屏则先解锁
 if (!device.isScreenOn()) {
   device.wakeUp();
-  sleep(400);
+  sleep(1000);
   //下拉状态栏
   swipe(255, 255, 255, 1000, 1000);
   sleep(400);
@@ -44,5 +44,8 @@ if (!device.isScreenOn()) {
   sleep(400);
   一();
   sleep(1000);
-  launchApp("钉钉");
+  app.launchApp("钉钉");
+} else {
+  // 直接运行
+  app.launchApp("钉钉");
 }
