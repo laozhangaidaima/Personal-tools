@@ -16,6 +16,7 @@ ui.layout(
   </vertical>
 );
 
+setScreenMetrics(1080, 2340);
 let activeTime = "";
 let unlockCode = [
   850,
@@ -39,6 +40,8 @@ function 一() {
 function 零() {
   click(unlockCode[6], unlockCode[7]);
 }
+
+
 
 ui.autoService.on("click", () => {
   app.startActivity({
