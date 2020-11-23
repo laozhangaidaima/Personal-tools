@@ -7,7 +7,10 @@
 // 息屏则先解锁
 if (!device.isScreenOn()) {
   device.wakeUp();
-  sleep(1000);
+  // 1-4分钟范围
+  // 1秒等于1000毫秒。
+  let time = parseInt(Math.random() * 3 + 1) * 60000;
+  sleep(time);
   app.launchApp("钉钉");
 } else {
   // 直接运行
