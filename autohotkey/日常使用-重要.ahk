@@ -35,4 +35,12 @@ WheelUp::
 Return
 
 
+; 重复按下N次回车键
+F10::
+    loop, 10 {
+        Send, {#}
+        Send, {Space}
+        Send, {Enter}
 
+    }
+Return
